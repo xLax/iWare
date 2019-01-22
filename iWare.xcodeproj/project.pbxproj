@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2A21F76A47004D0CF7 /* ProfileController.swift */; };
+		84587C2D21F76B70004D0CF7 /* WritePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2C21F76B70004D0CF7 /* WritePostController.swift */; };
+		84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2E21F772A3004D0CF7 /* RegisterController.swift */; };
+		84587C3121F77B14004D0CF7 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C3021F77B14004D0CF7 /* LoginController.swift */; };
 		849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E4021EA540F000DDB71 /* AppDelegate.swift */; };
 		849F4E4321EA540F000DDB71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E4221EA540F000DDB71 /* ViewController.swift */; };
 		849F4E4621EA540F000DDB71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849F4E4421EA540F000DDB71 /* Main.storyboard */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84587C2A21F76A47004D0CF7 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		84587C2C21F76B70004D0CF7 /* WritePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostController.swift; sourceTree = "<group>"; };
+		84587C2E21F772A3004D0CF7 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		84587C3021F77B14004D0CF7 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		849F4E3D21EA540F000DDB71 /* iWare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849F4E4021EA540F000DDB71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849F4E4221EA540F000DDB71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +88,10 @@
 		849F4E3421EA540F000DDB71 = {
 			isa = PBXGroup;
 			children = (
+				84587C3021F77B14004D0CF7 /* LoginController.swift */,
+				84587C2E21F772A3004D0CF7 /* RegisterController.swift */,
+				84587C2C21F76B70004D0CF7 /* WritePostController.swift */,
+				84587C2A21F76A47004D0CF7 /* ProfileController.swift */,
 				849F4E3F21EA540F000DDB71 /* iWare */,
 				849F4E5421EA5411000DDB71 /* iWareTests */,
 				849F4E5F21EA5411000DDB71 /* iWareUITests */,
@@ -263,8 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				849F4E7A21EE6A34000DDB71 /* MainViewController.swift in Sources */,
+				84587C2D21F76B70004D0CF7 /* WritePostController.swift in Sources */,
+				84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */,
 				849F4E4321EA540F000DDB71 /* ViewController.swift in Sources */,
 				849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */,
+				84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */,
+				84587C3121F77B14004D0CF7 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
