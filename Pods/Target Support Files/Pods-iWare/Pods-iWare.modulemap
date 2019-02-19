@@ -1,0 +1,6 @@
+framework module Pods_iWare {
+  umbrella header "Pods-iWare-umbrella.h"
+
+  export *
+  module * { export * }
+}
