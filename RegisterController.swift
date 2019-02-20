@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class RegisterController: UIViewController {
-    
     
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtLastName: UITextField!
@@ -19,9 +19,12 @@ class RegisterController: UIViewController {
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var lblErrors: UILabel!
     
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
     
@@ -63,21 +66,22 @@ class RegisterController: UIViewController {
 
         if boolIsOk == true
         {
+            addUser()
             performSegue(withIdentifier: "SegueRegister", sender: self)
         }
         else
         {
             lblErrors.text = "Please Fill All The Fields";
         }
+        addUser()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addUser() {
+        let firstName = txtFirstName.text!
+        let lastName = txtLastName.text!
+        let birthDate = dateBirthdate.date
+        let userName = txtUsername.text!
+        let password = txtPassword.text!
+        let user = User(_firstName: firstName, _lastName: lastName, _brithDate: birthDate, _userName: userName, _password: password)
+        self.ref.child("users").childByAutoId().setValue(user)
     }
-    */
-
 }

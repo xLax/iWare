@@ -204,7 +204,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-Wi-4TH">
-                                <rect key="frame" x="29" y="160" width="317" height="30"/>
+                                <rect key="frame" x="29" y="159" width="317" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -289,25 +289,26 @@
                                             <segue destination="XmV-er-q1T" kind="push" id="FbT-Jh-CRc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2M-FZ-TAM">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2M-FZ-TAM">
                                         <rect key="frame" x="8" y="52" width="37" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="write post"/>
                                         <connections>
                                             <segue destination="G1X-ky-6oX" kind="push" id="Obh-Qo-VvF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AE-j1-NRm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AE-j1-NRm">
                                         <rect key="frame" x="7" y="96" width="37" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="jhX-xo-Qss"/>
+                                            <constraint firstAttribute="width" constant="37" id="oq3-rG-t6j"/>
+                                        </constraints>
                                         <state key="normal" title="Button" image="settings"/>
                                         <connections>
                                             <segue destination="cMi-hl-7Xc" kind="push" id="SS9-zx-8sS"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcm-H3-iQb">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcm-H3-iQb">
                                         <rect key="frame" x="7" y="140" width="37" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="log off"/>
                                         <connections>
                                             <segue destination="BYZ-38-t0r" kind="modal" id="cVX-vZ-dWO"/>
@@ -348,9 +349,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDf-uk-fBw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDf-uk-fBw">
                                         <rect key="frame" x="53" y="104" width="106" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -365,8 +365,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96874207258224487" green="0.96088534593582153" blue="0.95649319887161255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6AE-j1-NRm" secondAttribute="bottom" constant="44" id="43c-1L-Get"/>
+                                    <constraint firstItem="6AE-j1-NRm" firstAttribute="top" secondItem="S2M-FZ-TAM" secondAttribute="bottom" constant="8" symbolic="YES" id="GiW-yh-dY6"/>
+                                    <constraint firstItem="6AE-j1-NRm" firstAttribute="leading" secondItem="TJw-Uc-HZK" secondAttribute="leading" constant="7" id="Kvj-C4-c5t"/>
+                                    <constraint firstItem="6AE-j1-NRm" firstAttribute="baseline" secondItem="NDf-uk-fBw" secondAttribute="baseline" id="PK4-nk-OEp"/>
+                                    <constraint firstItem="6AE-j1-NRm" firstAttribute="centerY" secondItem="NDf-uk-fBw" secondAttribute="centerY" id="QYC-xz-wIO"/>
                                     <constraint firstAttribute="width" constant="167" id="Vfb-Mu-Cmc"/>
+                                    <constraint firstItem="NDf-uk-fBw" firstAttribute="leading" secondItem="6AE-j1-NRm" secondAttribute="trailing" constant="9" id="b4t-WI-1rf"/>
                                     <constraint firstAttribute="height" constant="176" id="ipi-JZ-8Zr"/>
+                                    <constraint firstItem="6AE-j1-NRm" firstAttribute="leading" secondItem="Lcm-H3-iQb" secondAttribute="leading" id="mci-gS-OLX"/>
+                                    <constraint firstItem="Lcm-H3-iQb" firstAttribute="top" secondItem="6AE-j1-NRm" secondAttribute="bottom" constant="8" symbolic="YES" id="pjh-h5-7dA"/>
+                                    <constraint firstItem="6AE-j1-NRm" firstAttribute="trailing" secondItem="Lcm-H3-iQb" secondAttribute="trailing" id="u6P-ya-Bez"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -431,7 +440,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9KQ-vs-rJM">
-                                <rect key="frame" x="16" y="214" width="343" height="30"/>
+                                <rect key="frame" x="16" y="215" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -554,7 +563,7 @@
         <image name="write post" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AOu-54-EwF"/>
-        <segue reference="l8a-mb-sEr"/>
+        <segue reference="8Gp-eO-yWp"/>
+        <segue reference="cVX-vZ-dWO"/>
     </inferredMetricsTieBreakers>
 </document>
