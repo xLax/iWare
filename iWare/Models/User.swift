@@ -11,15 +11,25 @@ import Foundation
 class User {
     var firstName: String
     var lastName: String
-    var brithDate: Date
+    var birthDate: Date
     var userName: String
     var password: String
     
-    init(_firstName:String, _lastName: String, _brithDate: Date, _userName :String, _password :String) {
+    init(_firstName:String, _lastName: String, _birthDate: Date, _userName :String, _password :String) {
         self.firstName = _firstName
         self.lastName = _lastName
-        self.brithDate = _brithDate
+        self.birthDate = _birthDate
         self.userName = _userName
         self.password = _password
+    }
+    
+    func getDict() -> [String:String] {
+        return [
+            "firstname": self.firstName,
+            "lastName": self.lastName,
+            "birthDate": self.birthDate.description,
+            "userName": self.userName,
+            "password": self.password,
+        ]
     }
 }

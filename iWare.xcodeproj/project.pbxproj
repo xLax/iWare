@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84200FB1221D9ECB0072F833 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB0221D9ECB0072F833 /* User.swift */; };
+		84200FB3221F263C0072F833 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB2221F263C0072F833 /* Post.swift */; };
 		84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2A21F76A47004D0CF7 /* ProfileController.swift */; };
 		84587C2D21F76B70004D0CF7 /* WritePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2C21F76B70004D0CF7 /* WritePostController.swift */; };
 		84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2E21F772A3004D0CF7 /* RegisterController.swift */; };
@@ -48,6 +49,7 @@
 		304B1EDF22A4E079F6C7BD41 /* Pods_iWareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43608AFDE19B28180679765B /* Pods_iWare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84200FB0221D9ECB0072F833 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		84200FB2221F263C0072F833 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		84587C2A21F76A47004D0CF7 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		84587C2C21F76B70004D0CF7 /* WritePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostController.swift; sourceTree = "<group>"; };
 		84587C2E21F772A3004D0CF7 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				84200FB0221D9ECB0072F833 /* User.swift */,
+				84200FB2221F263C0072F833 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				849F4E4321EA540F000DDB71 /* ViewController.swift in Sources */,
 				84200FB1221D9ECB0072F833 /* User.swift in Sources */,
 				849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */,
+				84200FB3221F263C0072F833 /* Post.swift in Sources */,
 				84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */,
 				84587C3121F77B14004D0CF7 /* LoginController.swift in Sources */,
 			);

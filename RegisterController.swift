@@ -81,7 +81,7 @@ class RegisterController: UIViewController {
         let birthDate = dateBirthdate.date
         let userName = txtUsername.text!
         let password = txtPassword.text!
-        let user = User(_firstName: firstName, _lastName: lastName, _brithDate: birthDate, _userName: userName, _password: password)
-        self.ref.child("users").childByAutoId().setValue(user)
+        let user = User(_firstName: firstName, _lastName: lastName, _birthDate: birthDate, _userName: userName, _password: password)
+        self.ref.child("users").childByAutoId().setValue(user.getDict())
     }
 }
