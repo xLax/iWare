@@ -7,30 +7,32 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MainViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBOutlet weak var menuView: UIView!
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        ref = Database.database().reference()
+        getAllPost()
     }
     
     @IBAction func menuPressed(_ sender: Any) {
         menuView.isHidden = !menuView.isHidden;
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getAllPost() {
+        let postRef = ref.child("posts")
+        postRef.observeSingleEvent(of: .value, with: { (snap : DataSnapshot)  in
+            print(snap.value)
+            if snap.exists() {
+                
+            }
+        })
     }
-    */
-
 }

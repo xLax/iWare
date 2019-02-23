@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class LoginController: UIViewController {
 
@@ -15,52 +16,65 @@ class LoginController: UIViewController {
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var lblError: UILabel!
     
+     var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        ref = Database.database().reference()
     }
     
 
     @IBAction func OnConnect(_ sender: Any)
     {
-        var boolIsOk = true;
-        txtUsername.backgroundColor = UIColor.white;
-        txtPassword.backgroundColor = UIColor.white;
-        
-        if txtPassword.text == "" && txtUsername.text == ""
-        {
-            txtUsername.backgroundColor = UIColor.red;
-            txtPassword.backgroundColor = UIColor.red;
-            lblError.text = "Please Fill All The Fields";
-            boolIsOk = false;
+        if checkEmptyFields() {
+            connectUser()
         }
-        else if txtUsername.text == ""
-        {
-            txtUsername.backgroundColor = UIColor.red;
+    }
+    
+    func connectUser() {
+        let userName = txtUsername.text!
+        let password = txtPassword.text!
+        
+        let currentUserRef = ref.child("users").child(userName)
+        
+        currentUserRef.observeSingleEvent(of: .value, with: { (snap : DataSnapshot)  in
+            if snap.exists() {
+                if let value = snap.value as? [String:Any] {
+                    let snapPassword = value["password"] as? String
+                    if password == snapPassword {
+                        LoginInfo.shareInstance.userName = userName
+                        self.performSegue(withIdentifier: "SegueConnect", sender: self)
+                    } else {
+                        self.lblError.text = "Username or Password are invalid";
+                    }
+                }
+            } else {
+                self.lblError.text = "Username or Password are invalid";
+            }
+        })
+    }
+    
+    func checkEmptyFields() -> Bool {
+        var validForm = true
+        let userName = txtUsername.text!
+        let password = txtPassword.text!
+        
+        if userName == "" {
             lblError.text = "Please Enter Username";
-            boolIsOk = false;
+            txtUsername.backgroundColor = UIColor.red;
+            validForm = false
+        } else {
+            txtUsername.backgroundColor = UIColor.white;
+            
+            if (password == "") {
+                validForm = false
+                txtPassword.backgroundColor = UIColor.red;
+                lblError.text = "Please Enter Password";
+            } else {
+                txtPassword.backgroundColor = UIColor.white;
+                lblError.text = "";
+            }
         }
-        else if txtPassword.text == ""
-        {
-            txtPassword.backgroundColor = UIColor.red;
-            lblError.text = "Please Enter Password";
-            boolIsOk = false;
-        }
-        
-        if boolIsOk == true
-        {
-            performSegue(withIdentifier: "SegueConnect", sender: self)
-        }
+        return validForm
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

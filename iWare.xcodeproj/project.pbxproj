@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		84200FB1221D9ECB0072F833 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB0221D9ECB0072F833 /* User.swift */; };
 		84200FB3221F263C0072F833 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB2221F263C0072F833 /* Post.swift */; };
+		84200FBC221F2ED80072F833 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FBB221F2ED80072F833 /* LoginInfo.swift */; };
 		84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2A21F76A47004D0CF7 /* ProfileController.swift */; };
 		84587C2D21F76B70004D0CF7 /* WritePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2C21F76B70004D0CF7 /* WritePostController.swift */; };
 		84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2E21F772A3004D0CF7 /* RegisterController.swift */; };
@@ -50,6 +51,7 @@
 		43608AFDE19B28180679765B /* Pods_iWare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84200FB0221D9ECB0072F833 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84200FB2221F263C0072F833 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		84200FBB221F2ED80072F833 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		84587C2A21F76A47004D0CF7 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		84587C2C21F76B70004D0CF7 /* WritePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostController.swift; sourceTree = "<group>"; };
 		84587C2E21F772A3004D0CF7 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		84200FBA221F2EB80072F833 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				84200FBB221F2ED80072F833 /* LoginInfo.swift */,
+			);
+			name = Services;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
 		849F4E3421EA540F000DDB71 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +149,7 @@
 		849F4E3F21EA540F000DDB71 /* iWare */ = {
 			isa = PBXGroup;
 			children = (
+				84200FBA221F2EB80072F833 /* Services */,
 				84200FAF221D9E6C0072F833 /* Models */,
 				8491D78E221C5B2C00189511 /* GoogleService-Info.plist */,
 				849F4E4021EA540F000DDB71 /* AppDelegate.swift */,
@@ -380,6 +392,7 @@
 				84200FB3221F263C0072F833 /* Post.swift in Sources */,
 				84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */,
 				84587C3121F77B14004D0CF7 /* LoginController.swift in Sources */,
+				84200FBC221F2ED80072F833 /* LoginInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

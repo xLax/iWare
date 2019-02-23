@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class WritePostController: UIViewController {
     
@@ -16,10 +17,13 @@ class WritePostController: UIViewController {
     @IBOutlet weak var btnAttach: UIButton!
     @IBOutlet weak var btnPost: UIButton!
     
+    var ref: DatabaseReference!
+    var userName: String!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        userName = LoginInfo.shareInstance.userName
+        ref = Database.database().reference()
     }
     
 
@@ -29,17 +33,10 @@ class WritePostController: UIViewController {
     
     @IBAction func OnPost(_ sender: Any)
     {
+        let text = inputText.text!
+        
+        let post = Post(userName: userName, text: text, image: "image")
+        self.ref.child("posts").childByAutoId().setValue(post.getDict())
         performSegue(withIdentifier: "SeguePost", sender: self)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

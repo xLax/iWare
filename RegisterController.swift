@@ -25,7 +25,6 @@ class RegisterController: UIViewController {
         super.viewDidLoad()
 
         ref = Database.database().reference()
-        // Do any additional setup after loading the view.
     }
     
 
@@ -82,6 +81,6 @@ class RegisterController: UIViewController {
         let userName = txtUsername.text!
         let password = txtPassword.text!
         let user = User(_firstName: firstName, _lastName: lastName, _birthDate: birthDate, _userName: userName, _password: password)
-        self.ref.child("users").childByAutoId().setValue(user.getDict())
+        self.ref.child("users").child(userName).setValue(user.getDict())
     }
 }
