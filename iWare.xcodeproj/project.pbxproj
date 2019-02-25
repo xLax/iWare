@@ -25,6 +25,7 @@
 		849F4E5621EA5411000DDB71 /* iWareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E5521EA5411000DDB71 /* iWareTests.swift */; };
 		849F4E6121EA5411000DDB71 /* iWareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E6021EA5411000DDB71 /* iWareUITests.swift */; };
 		849F4E7A21EE6A34000DDB71 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E7921EE6A34000DDB71 /* MainViewController.swift */; };
+		84E38AEA222452C8003EA6CA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 84E38AE9222452C8003EA6CA /* .gitignore */; };
 		C395D64538276A59472461B3 /* Pods_iWare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43608AFDE19B28180679765B /* Pods_iWare.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		849F4E6221EA5411000DDB71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849F4E6E21EBA3C7000DDB71 /* iWare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iWare-Bridging-Header.h"; sourceTree = "<group>"; };
 		849F4E7921EE6A34000DDB71 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		84E38AE9222452C8003EA6CA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BBB3165B484C8E6B62E3DCF6 /* Pods_iWareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56AF934B64241484FD2BD3A /* Pods-iWare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iWare/Pods-iWare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 		849F4E3421EA540F000DDB71 = {
 			isa = PBXGroup;
 			children = (
+				84E38AE9222452C8003EA6CA /* .gitignore */,
 				84587C3021F77B14004D0CF7 /* LoginController.swift */,
 				84587C2E21F772A3004D0CF7 /* RegisterController.swift */,
 				84587C2C21F76B70004D0CF7 /* WritePostController.swift */,
@@ -308,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E38AEA222452C8003EA6CA /* .gitignore in Resources */,
 				849F4E4B21EA5411000DDB71 /* LaunchScreen.storyboard in Resources */,
 				8491D78F221C5B2C00189511 /* GoogleService-Info.plist in Resources */,
 				849F4E4821EA5411000DDB71 /* Assets.xcassets in Resources */,
