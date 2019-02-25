@@ -12,9 +12,11 @@ import FirebaseDatabase
 class MainViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    
     @IBOutlet weak var menuView: UIView!
+    
     var ref: DatabaseReference!
+    
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +30,15 @@ class MainViewController: UIViewController {
     
     func getAllPost() {
         let postRef = ref.child("posts")
-        postRef.observeSingleEvent(of: .value, with: { (snap : DataSnapshot)  in
-            print(snap.value)
-            if snap.exists() {
+        postRef.observe(.value, with: { (snapshot : DataSnapshot)  in
+            if !snapshot.exists() { return }
+            
+            for snap in snapshot.children {
+                let postSnap = snap as! DataSnapshot
+                let dict = postSnap.value as! [String: Any]
+                let newPost = Post.createFromDict(dict: dict)
                 
+                self.posts.append(newPost)
             }
         })
     }
