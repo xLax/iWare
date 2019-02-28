@@ -21,8 +21,9 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        txtUsername.text = "rew"
+        txtPassword.text = "r"
     }
-    
 
     @IBAction func OnConnect(_ sender: Any)
     {

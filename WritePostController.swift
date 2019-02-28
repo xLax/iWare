@@ -9,34 +9,55 @@
 import UIKit
 import FirebaseDatabase
 
-class WritePostController: UIViewController {
+class WritePostController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lblUsername: UITextView!
     @IBOutlet weak var inputText: UITextField!
     @IBOutlet weak var btnAttach: UIButton!
     @IBOutlet weak var btnPost: UIButton!
     
-    var ref: DatabaseReference!
+    var imagePicker = UIImagePickerController()
+    
     var userName: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         userName = LoginInfo.shareInstance.userName
-        ref = Database.database().reference()
     }
     
-
     @IBAction func OnAttach(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            let picker = UIImagePickerController()
+            picker.allowsEditing = false
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        imageView.image = image
+        self.dismiss(animated: true, completion: nil)
+//        FirebaseService.shareInstance.getImage(userName: userName) { (image) in
+//            print("lol")
+//            print(image)
+//            self.imageView.image = image
+//        }
     }
     
     
     @IBAction func OnPost(_ sender: Any)
     {
         let text = inputText.text!
-        
-        let post = Post(userName: userName, text: text, image: "image")
-        self.ref.child("posts").childByAutoId().setValue(post.getDict())
+    
+        FirebaseService.shareInstance.saveImage(image: imageView.image!, userName: self.userName, callback: { (imageUrl) in
+            let post = Post(userName: self.userName, text: text, image: imageUrl!)
+            let ref = FirebaseService.shareInstance.ref!
+            ref.child("posts").childByAutoId().setValue(post.getDict())
+        })
+
         performSegue(withIdentifier: "SeguePost", sender: self)
     }
 }

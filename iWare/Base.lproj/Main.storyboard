@@ -186,7 +186,7 @@
         <!--Write Post-->
         <scene sceneID="gxN-qe-Nwd">
             <objects>
-                <viewController id="G1X-ky-6oX" customClass="WritePostController" customModule="iWare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="G1X-ky-6oX" customClass="WritePostController" customModule="iWare" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Re0-og-mho">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,16 +210,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miO-hm-ogy">
-                                <rect key="frame" x="0.0" y="252" width="375" height="371"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95308452072538863" green="0.95308452072538863" blue="0.95308452072538863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqZ-AO-AAp">
-                                <rect key="frame" x="16" y="210" width="112" height="21"/>
+                                <rect key="frame" x="-7" y="378" width="112" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Attach">
                                     <attributedString key="attributedTitle">
@@ -236,7 +228,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qra-5C-6tN">
-                                <rect key="frame" x="253" y="198" width="99" height="45"/>
+                                <rect key="frame" x="230" y="366" width="99" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Post">
                                     <attributedString key="attributedTitle">
@@ -252,6 +244,10 @@
                                     <action selector="OnPost:" destination="G1X-ky-6oX" eventType="touchUpInside" id="3nv-Y0-Bf0"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-BT-iaG">
+                                <rect key="frame" x="16" y="197" width="274" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rl0-s7-Eod"/>
@@ -260,6 +256,7 @@
                     <connections>
                         <outlet property="btnAttach" destination="zqZ-AO-AAp" id="HYk-jN-Jsi"/>
                         <outlet property="btnPost" destination="qra-5C-6tN" id="sop-XN-Sfw"/>
+                        <outlet property="imageView" destination="4dd-BT-iaG" id="voW-X9-3ha"/>
                         <outlet property="imgProfile" destination="syt-qR-86c" id="fDn-zP-TMT"/>
                         <outlet property="inputText" destination="CrU-Wi-4TH" id="N8Z-Ky-sxF"/>
                         <outlet property="lblUsername" destination="Pe1-WR-5V2" id="TmL-93-8Sg"/>
@@ -563,7 +560,7 @@
         <image name="write post" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Gp-eO-yWp"/>
+        <segue reference="AOu-54-EwF"/>
         <segue reference="cVX-vZ-dWO"/>
     </inferredMetricsTieBreakers>
 </document>
