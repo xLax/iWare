@@ -275,6 +275,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZuY-Ha-0Se">
+                                <rect key="frame" x="0.0" y="73" width="375" height="520"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="8ig-p4-ZpN" customClass="MyCustomCell" customModule="iWare">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8ig-p4-ZpN" id="Iud-fa-yie">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g22-pW-6nV">
+                                                    <rect key="frame" x="15" y="0.0" width="50" height="59"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45L-gI-yBa">
+                                                    <rect key="frame" x="82" y="0.0" width="103" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="myCellLabel" destination="45L-gI-yBa" id="gD7-ML-Tpa"/>
+                                            <outlet property="myView" destination="g22-pW-6nV" id="Uj9-OA-Awi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJw-Uc-HZK" colorLabel="IBBuiltInLabel-Gray">
                                 <rect key="frame" x="208" y="64" width="167" height="176"/>
                                 <subviews>
@@ -396,6 +428,7 @@
                     <connections>
                         <outlet property="menuButton" destination="yNF-4z-bNq" id="Zmt-sd-cMg"/>
                         <outlet property="menuView" destination="TJw-Uc-HZK" id="rfK-IW-FUO"/>
+                        <outlet property="tableView" destination="ZuY-Ha-0Se" id="qY3-Kk-o7o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NNQ-9j-bnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -560,7 +593,7 @@
         <image name="write post" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AOu-54-EwF"/>
+        <segue reference="8Gp-eO-yWp"/>
         <segue reference="cVX-vZ-dWO"/>
     </inferredMetricsTieBreakers>
 </document>

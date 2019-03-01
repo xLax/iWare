@@ -51,11 +51,15 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func OnPost(_ sender: Any)
     {
         let text = inputText.text!
-    
-        FirebaseService.shareInstance.saveImage(image: imageView.image!, userName: self.userName, callback: { (imageUrl) in
-            let post = Post(userName: self.userName, text: text, image: imageUrl!)
+        
+        // Get image id
+        let imageId = Utils.shareInstance.getUniqeId()
+        let postId = Utils.shareInstance.getUniqeId()
+        
+        FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
+            let post = Post(id: postId, userName: self.userName, text: text, imageId: imageId)
             let ref = FirebaseService.shareInstance.ref!
-            ref.child("posts").childByAutoId().setValue(post.getDict())
+            ref.child("posts").child(postId).setValue(post.getDict())
         })
 
         performSegue(withIdentifier: "SeguePost", sender: self)

@@ -10,31 +10,28 @@ import Foundation
 import FirebaseDatabase
 
 class Post {
+    var id: String?
     var userName: String?
     var text: String?
-    var image: String?
+    var imageId: String?
     
-    init(userName:String, text:String, image: String) {
+    init(id: String, userName:String, text:String, imageId: String) {
+        self.id = id
         self.userName = userName
         self.text = text
-        self.image = image
-    }
-    
-    func create(userName:String, text: String, image: String) {
-        self.userName = userName
-        self.text = text
-        self.image = image
+        self.imageId = imageId
     }
     
     func getDict() -> [String:String]{
         return [
+            "id": id!,
             "userName": userName!,
             "text": text!,
-            "image": image!
+            "imageId": imageId!
         ]
     }
     
     static func createFromDict(dict:[String:Any]) -> Post {
-        return Post(userName: dict["userName"] as! String, text: dict["text"] as! String, image: dict["image"] as! String)
+        return Post(id: dict["id"] as! String, userName: dict["userName"] as! String, text: dict["text"] as! String, imageId: dict["imageId"] as! String)
     }
 }

@@ -23,6 +23,9 @@ class LoginController: UIViewController {
         ref = Database.database().reference()
         txtUsername.text = "rew"
         txtPassword.text = "r"
+        let x = NSUUID().uuidString
+        print("1727A69C-696C-4B52-9525-A9AD403A3E57")
+        print(x)
     }
 
     @IBAction func OnConnect(_ sender: Any)
