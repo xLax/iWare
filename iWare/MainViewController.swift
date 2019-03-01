@@ -81,6 +81,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 self.posts.append(newPost)
             }
+            
+            print(self.posts)
         })
     }
 }

@@ -72,15 +72,17 @@ class RegisterController: UIViewController {
         {
             lblErrors.text = "Please Fill All The Fields";
         }
+        
         addUser()
     }
+    
     func addUser() {
         let firstName = txtFirstName.text!
         let lastName = txtLastName.text!
         let birthDate = dateBirthdate.date
         let userName = txtUsername.text!
         let password = txtPassword.text!
-        let user = User(_firstName: firstName, _lastName: lastName, _birthDate: birthDate, _userName: userName, _password: password)
+        let user = User(firstName: firstName, lastName: lastName, birthDate: birthDate, userName: userName, password: password)
         self.ref.child("users").child(userName).setValue(user.getDict())
     }
 }

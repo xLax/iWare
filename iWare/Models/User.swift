@@ -15,21 +15,31 @@ class User {
     var userName: String
     var password: String
     
-    init(_firstName:String, _lastName: String, _birthDate: Date, _userName :String, _password :String) {
-        self.firstName = _firstName
-        self.lastName = _lastName
-        self.birthDate = _birthDate
-        self.userName = _userName
-        self.password = _password
+    init(firstName:String, lastName: String, birthDate: Date, userName :String, password :String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.birthDate = birthDate
+        self.userName = userName
+        self.password = password
     }
     
     func getDict() -> [String:String] {
         return [
-            "firstname": self.firstName,
+            "firstName": self.firstName,
             "lastName": self.lastName,
-            "birthDate": self.birthDate.description,
+            "birthDate": Utils.getStringFromDate(date: self.birthDate),
             "userName": self.userName,
             "password": self.password,
         ]
+    }
+    
+    static func createFromDict(dict:[String:Any]) -> User {
+        print(dict["firstName"])
+        print(dict["lastName"])
+        print(dict["birthDate"])
+        print(dict["userName"])
+        
+        return User(firstName: dict["firstName"] as! String, lastName: dict["lastName"] as! String,
+                    birthDate: Utils.getDateFromString(dateStr: dict["birthDate"] as! String), userName: dict["userName"] as! String, password: dict["password"] as! String)
     }
 }

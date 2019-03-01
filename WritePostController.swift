@@ -53,8 +53,8 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         let text = inputText.text!
         
         // Get image id
-        let imageId = Utils.shareInstance.getUniqeId()
-        let postId = Utils.shareInstance.getUniqeId()
+        let imageId = Utils.getUniqeId()
+        let postId = Utils.getUniqeId()
         
         FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
             let post = Post(id: postId, userName: self.userName, text: text, imageId: imageId)

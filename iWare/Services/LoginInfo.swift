@@ -9,8 +9,19 @@
 import Foundation
 
 class LoginInfo {
-    var userName:String = ""
+    var userName: String = ""
+    var firtName: String = ""
+    var lastName: String = ""
+    var birthDate: Date = Date()
+    
     static let shareInstance = LoginInfo()
+    
+    func initLoginInfo(user: User) {
+        userName = user.userName
+        firtName = user.firstName
+        lastName = user.lastName
+        birthDate = user.birthDate
+    }
     
     init() {}
 }

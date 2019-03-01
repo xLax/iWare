@@ -44,9 +44,12 @@ class LoginController: UIViewController {
         currentUserRef.observeSingleEvent(of: .value, with: { (snap : DataSnapshot)  in
             if snap.exists() {
                 if let value = snap.value as? [String:Any] {
-                    let snapPassword = value["password"] as? String
-                    if password == snapPassword {
-                        LoginInfo.shareInstance.userName = userName
+                    let user = User.createFromDict(dict: value)
+                    if password == user.password {
+                        // Save the user in login info
+                        LoginInfo.shareInstance.initLoginInfo(user: user)
+                        
+                        // Go to the home page
                         self.performSegue(withIdentifier: "SegueConnect", sender: self)
                     } else {
                         self.lblError.text = "Username or Password are invalid";
