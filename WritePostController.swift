@@ -40,11 +40,6 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         imageView.image = image
         self.dismiss(animated: true, completion: nil)
-//        FirebaseService.shareInstance.getImage(userName: userName) { (image) in
-//            print("lol")
-//            print(image)
-//            self.imageView.image = image
-//        }
     }
     
     

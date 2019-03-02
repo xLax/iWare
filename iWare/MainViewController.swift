@@ -20,6 +20,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                              "Horse", "Cow", "Camel", "Sheep", "Goat",
                              "Horse", "Cow", "Camel", "Sheep", "Goat"]
     
+    var posts = [Post]()
+    var postImages = [UIImage]()
+    
     var cellReuseIdentifier = "cell"
     
     // These are the colors of the square views in our table view cells.
@@ -41,24 +44,57 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Get all the posts
         getAllPost(callback: { (posts: [Post]?) in
             print(posts!.count)
+            self.posts = posts!
             
             for post in posts! {
                 print(post.getDict())
+                if post.imageId != "" {
+                    FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
+                        self.postImages.append(image!)
+                        self.updateTable()
+                    }
+                }
             }
+            
+            self.updateTable()
         })
+    }
+    
+    func updateTable() {
+        self.tableView.reloadData()
     }
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.animals.count
+        return self.posts.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 250
+    }
+
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MyCustomCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MyCustomCell
+        let cell:PostCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! PostCell
+        if (indexPath.row >= self.posts.count) {
+            return cell
+        }
         
-        cell.myView.backgroundColor = self.colors[indexPath.row]
-        cell.myCellLabel.text = self.animals[indexPath.row]
+        print(self.posts.count)
+        print(indexPath.row)
+        let post: Post = self.posts[indexPath.row]
+        
+        cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
+        cell.lblContent.text = post.text
+        cell.lblUserName.text = post.userName
+        
+        if indexPath.row >= self.postImages.count {
+            return cell
+        }
+        
+        cell.postImage.image = self.postImages[indexPath.row]
+        Utils.reSizeImage(imageView: cell.postImage)
         
         return cell
     }

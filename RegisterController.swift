@@ -82,7 +82,7 @@ class RegisterController: UIViewController {
         let birthDate = dateBirthdate.date
         let userName = txtUsername.text!
         let password = txtPassword.text!
-        let user = User(firstName: firstName, lastName: lastName, birthDate: birthDate, userName: userName, password: password)
+        let user = User(firstName: firstName, lastName: lastName, birthDate: birthDate,  profileImageId: "", userName: userName, password: password)
         self.ref.child("users").child(userName).setValue(user.getDict())
     }
 }

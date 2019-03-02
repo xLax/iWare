@@ -14,6 +14,7 @@ import FirebaseStorage
 class FirebaseService {
     var ref:DatabaseReference!
     var storage: Storage
+    let storageRef: StorageReference
     let STORAGE_URL: String = "gs://iware-ff8b5.appspot.com/"
     
     static let shareInstance = FirebaseService()
@@ -21,15 +22,15 @@ class FirebaseService {
     init() {
         ref = Database.database().reference()
         storage = Storage.storage()
+        storageRef = storage.reference(forURL: STORAGE_URL)
     }
     
     func saveImage(image:UIImage, imageId: String,
                    callback:@escaping (String?)->Void){
-        let data = image.pngData()
-        let storageRef = storage.reference(forURL: STORAGE_URL)
+        let data = image.jpegData(compressionQuality: 0.8)
         let imageRef = storageRef.child(imageId)
         let metadata = StorageMetadata()
-        metadata.contentType = "image/png"
+        metadata.contentType = "image/jpeg"
         imageRef.putData(data!, metadata: metadata) { (metadata, error) in
             imageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
@@ -41,15 +42,14 @@ class FirebaseService {
         }
     }
     
-    func getImage(userName: String, callback:@escaping (UIImage?)->Void){
-        let storageRef = storage.reference(forURL: STORAGE_URL + "/" + userName)
-        storageRef.getData(maxSize: 20 * 1024 * 1024) { data, error in
+    func getImage(imageId: String, callback:@escaping (UIImage?)->Void){
+        let storageRef = storage.reference(forURL: STORAGE_URL + "/" + imageId)
+        storageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
             if error != nil {
                 print(error)
                 callback(nil)
             } else {
                 let image = UIImage(data: data!)
-                print(image)
                 callback(image)
             }
         }
@@ -58,5 +58,19 @@ class FirebaseService {
     func createPost(id: String, userName: String, text: String, imageId: String) {
         let post = Post(id: id, userName: userName, text: text, imageId: imageId)
         ref.child("posts").child(id).setValue(post.getDict())
+    }
+    
+    func deletePost(id: String) {
+        ref.child("posts").child(id).removeValue()
+    }
+    
+    func deleteImageFromStorage(imageId: String) {
+        let imageRef = storageRef.child(imageId)
+        imageRef.delete(completion: nil)
+    }
+    
+    func updateUserProfileImage(userName: String, imageId: String) {
+        ref.child("users").child(userName).updateChildValues(["profileImageId": imageId])
+        LoginInfo.shareInstance.profileImageId = imageId
     }
 }

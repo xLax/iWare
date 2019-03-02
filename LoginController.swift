@@ -16,11 +16,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var lblError: UILabel!
     
-     var ref: DatabaseReference!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
         txtUsername.text = "rew"
         txtPassword.text = "r"
     }
@@ -32,11 +29,16 @@ class LoginController: UIViewController {
         }
     }
     
+    func deletePost(post: Post) {
+        FirebaseService.shareInstance.deleteImageFromStorage(imageId: post.imageId!)
+        FirebaseService.shareInstance.deletePost(id: post.id!)
+    }
+    
     func connectUser() {
         let userName = txtUsername.text!
         let password = txtPassword.text!
         
-        let currentUserRef = ref.child("users").child(userName)
+        let currentUserRef = FirebaseService.shareInstance.ref.child("users").child(userName)
         
         currentUserRef.observeSingleEvent(of: .value, with: { (snap : DataSnapshot)  in
             if snap.exists() {
@@ -44,6 +46,7 @@ class LoginController: UIViewController {
                     let user = User.createFromDict(dict: value)
                     if password == user.password {
                         // Save the user in login info
+                        print(value["profileImageId"])
                         LoginInfo.shareInstance.initLoginInfo(user: user)
                         
                         // Go to the home page

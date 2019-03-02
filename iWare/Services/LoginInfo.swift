@@ -12,6 +12,7 @@ class LoginInfo {
     var userName: String = ""
     var firtName: String = ""
     var lastName: String = ""
+    var profileImageId: String = ""
     var birthDate: Date = Date()
     
     static let shareInstance = LoginInfo()
@@ -21,6 +22,8 @@ class LoginInfo {
         firtName = user.firstName
         lastName = user.lastName
         birthDate = user.birthDate
+        profileImageId = user.profileImageId
+        print(user.getDict())
     }
     
     init() {}
