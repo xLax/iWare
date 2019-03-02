@@ -34,11 +34,6 @@ class User {
     }
     
     static func createFromDict(dict:[String:Any]) -> User {
-        print(dict["firstName"])
-        print(dict["lastName"])
-        print(dict["birthDate"])
-        print(dict["userName"])
-        
         return User(firstName: dict["firstName"] as! String, lastName: dict["lastName"] as! String,
                     birthDate: Utils.getDateFromString(dateStr: dict["birthDate"] as! String), userName: dict["userName"] as! String, password: dict["password"] as! String)
     }

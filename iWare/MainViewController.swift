@@ -20,8 +20,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                              "Horse", "Cow", "Camel", "Sheep", "Goat",
                              "Horse", "Cow", "Camel", "Sheep", "Goat"]
     
-    var posts = [Post]()
-    
     var cellReuseIdentifier = "cell"
     
     // These are the colors of the square views in our table view cells.
@@ -41,7 +39,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         
         // Get all the posts
-        getAllPost()
+        getAllPost(callback: { (posts: [Post]?) in
+            print(posts!.count)
+            
+            for post in posts! {
+                print(post.getDict())
+            }
+        })
     }
     
     // number of rows in table view
@@ -68,7 +72,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         menuView.isHidden = !menuView.isHidden;
     }
     
-    func getAllPost() {
+    func getAllPost(callback:@escaping ([Post]?)->Void) {
+        var posts = [Post]()
         let ref = FirebaseService.shareInstance.ref!
         let postRef = ref.child("posts")
         postRef.observe(.value, with: { (snapshot : DataSnapshot)  in
@@ -79,10 +84,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let dict = postSnap.value as! [String: Any]
                 let newPost = Post.createFromDict(dict: dict)
                 
-                self.posts.append(newPost)
+                posts.append(newPost)
             }
             
-            print(self.posts)
+            callback(posts)
         })
     }
 }

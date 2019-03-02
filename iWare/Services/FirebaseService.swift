@@ -54,4 +54,9 @@ class FirebaseService {
             }
         }
     }
+    
+    func createPost(id: String, userName: String, text: String, imageId: String) {
+        let post = Post(id: id, userName: userName, text: text, imageId: imageId)
+        ref.child("posts").child(id).setValue(post.getDict())
+    }
 }

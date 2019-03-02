@@ -52,16 +52,28 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     {
         let text = inputText.text!
         
-        // Get image id
-        let imageId = Utils.getUniqeId()
-        let postId = Utils.getUniqeId()
+        if !checkValidation(text: text) {
+            return print("You should write something before you share a post...")
+        }
         
-        FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
-            let post = Post(id: postId, userName: self.userName, text: text, imageId: imageId)
-            let ref = FirebaseService.shareInstance.ref!
-            ref.child("posts").child(postId).setValue(post.getDict())
-        })
+        let postId = Utils.getUniqeId()
+        var imageId = ""
+        
+        // Check if there is image
+        if imageView.image == nil {
+            FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
+        } else {
+            // Get image id
+            imageId = Utils.getUniqeId()
+            FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
+               FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
+            })
+        }
 
         performSegue(withIdentifier: "SeguePost", sender: self)
+    }
+    
+    func checkValidation(text: String) -> Bool {
+        return !text.isEmpty
     }
 }
