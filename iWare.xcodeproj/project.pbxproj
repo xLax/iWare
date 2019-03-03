@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		84200FB1221D9ECB0072F833 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB0221D9ECB0072F833 /* User.swift */; };
 		84200FB3221F263C0072F833 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB2221F263C0072F833 /* Post.swift */; };
+		842E9DF1222C78CE00A7FB02 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */; };
 		84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2A21F76A47004D0CF7 /* ProfileController.swift */; };
 		84587C2D21F76B70004D0CF7 /* WritePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2C21F76B70004D0CF7 /* WritePostController.swift */; };
 		84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2E21F772A3004D0CF7 /* RegisterController.swift */; };
@@ -16,7 +17,6 @@
 		8491D78F221C5B2C00189511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8491D78E221C5B2C00189511 /* GoogleService-Info.plist */; };
 		8491D790221C5B2C00189511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8491D78E221C5B2C00189511 /* GoogleService-Info.plist */; };
 		8491D791221C5B2C00189511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8491D78E221C5B2C00189511 /* GoogleService-Info.plist */; };
-		849780852225CE5D00FA1767 /* VisiblityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849780842225CE5D00FA1767 /* VisiblityExtension.swift */; };
 		849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E4021EA540F000DDB71 /* AppDelegate.swift */; };
 		849F4E4321EA540F000DDB71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E4221EA540F000DDB71 /* ViewController.swift */; };
 		849F4E4621EA540F000DDB71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849F4E4421EA540F000DDB71 /* Main.storyboard */; };
@@ -56,12 +56,12 @@
 		43608AFDE19B28180679765B /* Pods_iWare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84200FB0221D9ECB0072F833 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84200FB2221F263C0072F833 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		84587C2A21F76A47004D0CF7 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		84587C2C21F76B70004D0CF7 /* WritePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostController.swift; sourceTree = "<group>"; };
 		84587C2E21F772A3004D0CF7 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		84587C3021F77B14004D0CF7 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8491D78E221C5B2C00189511 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		849780842225CE5D00FA1767 /* VisiblityExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisiblityExtension.swift; sourceTree = "<group>"; };
 		849F4E3D21EA540F000DDB71 /* iWare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849F4E4021EA540F000DDB71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849F4E4221EA540F000DDB71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,14 +121,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		849780832225CE3E00FA1767 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				849780842225CE5D00FA1767 /* VisiblityExtension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		849F4E3421EA540F000DDB71 = {
 			isa = PBXGroup;
 			children = (
@@ -161,7 +153,6 @@
 			children = (
 				84EB0EEF222C305A0004635E /* Services */,
 				84E7C1DD222949890020C51F /* CustomViews */,
-				849780832225CE3E00FA1767 /* Extensions */,
 				84200FAF221D9E6C0072F833 /* Models */,
 				8491D78E221C5B2C00189511 /* GoogleService-Info.plist */,
 				849F4E4021EA540F000DDB71 /* AppDelegate.swift */,
@@ -172,6 +163,7 @@
 				849F4E4921EA5411000DDB71 /* LaunchScreen.storyboard */,
 				849F4E4C21EA5411000DDB71 /* Info.plist */,
 				849F4E6E21EBA3C7000DDB71 /* iWare-Bridging-Header.h */,
+				842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */,
 			);
 			path = iWare;
 			sourceTree = "<group>";
@@ -419,12 +411,12 @@
 				84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */,
 				84EB0EF5222C30650004635E /* Utils.swift in Sources */,
 				84EB0EF2222C305A0004635E /* LoginInfo.swift in Sources */,
-				849780852225CE5D00FA1767 /* VisiblityExtension.swift in Sources */,
 				849F4E4321EA540F000DDB71 /* ViewController.swift in Sources */,
 				84E7C1E5222A90300020C51F /* PostCell.swift in Sources */,
 				84EB0EF3222C305A0004635E /* FirebaseService.swift in Sources */,
 				84200FB1221D9ECB0072F833 /* User.swift in Sources */,
 				849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */,
+				842E9DF1222C78CE00A7FB02 /* CustomTabBarViewController.swift in Sources */,
 				84200FB3221F263C0072F833 /* Post.swift in Sources */,
 				84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */,
 				84587C3121F77B14004D0CF7 /* LoginController.swift in Sources */,
