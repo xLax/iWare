@@ -33,4 +33,16 @@ class Utils {
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter.string(from: date)
     }
+    
+    static func findKeyForValue(value: String, dictionary: [Int: String]) -> Int?
+    {
+        for (key, array) in dictionary {
+            if (array.contains(value))
+            {
+                return key
+            }
+        }
+        
+        return nil
+    }
 }

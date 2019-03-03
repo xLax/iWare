@@ -14,12 +14,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var menuView: UIView!
     
-    var postImagesDict = [Int: UIImage]()
-    
     var cellReuseIdentifier = "cell"
     var postIndex: Int = 0
     
-    var postDict = [Int: Post]()
+    var postDict = [String: Post]()
+    var postImagesDict = [String: UIImage]()
+    var postIndexDict = [Int: String]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,15 +32,58 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Get all the posts
         fetchPosts(callback: { (newPost: Post) in
-            self.reloadPost(post: newPost, postIndex: self.postIndex)
+            self.reloadPost(post: newPost)
+        })
+        
+        listenForDeletePost(callback: { (postForDelete: Post) in
+            let postId = postForDelete.id!
             
+            let IndexForDelete = Utils.findKeyForValue(value: postId, dictionary: self.postIndexDict)!
+            print(IndexForDelete)
+            self.postIndexDict[IndexForDelete] = nil
+            
+            // Set the values on the dicts to nil
+            self.postImagesDict[postId] = nil
+            self.postDict[postId] = nil
         })
     }
     
-    func reloadPost(post: Post, postIndex: Int) {
+    func fetchPosts(callback:@escaping (Post)->Void) {
+        let ref = FirebaseService.shareInstance.ref!
+        let postRef = ref.child("posts")
+        postRef.observe(.childAdded, with: { (snapshot : DataSnapshot)  in
+            if !snapshot.exists() { return }
+            
+            // Create the post from the snap shot
+            let dict = snapshot.value as! [String: Any]
+            let newPost = Post.createFromDict(dict: dict)
+            
+            // Return the callback
+            callback(newPost)
+        })
+    }
+    
+    func listenForDeletePost(callback:@escaping (Post)->Void) {
+        let ref = FirebaseService.shareInstance.ref!
+        let postRef = ref.child("posts")
+        postRef.observe(.childRemoved, with: {(snapshot)-> Void in
+            if !snapshot.exists() { return }
+            
+            // Create the post from the snap shot
+            let dict = snapshot.value as! [String: Any]
+            let postForDelete = Post.createFromDict(dict: dict)
+            
+            // Return the call back
+            callback(postForDelete)
+        })
+    }
+    
+    func reloadPost(post: Post) {
         FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
-            self.postImagesDict[postIndex] = image
-            self.postDict[self.postIndex] = post
+            let postId = post.id!
+            self.postIndexDict[self.postIndex] = postId
+            self.postImagesDict[postId] = image
+            self.postDict[postId] = post
             self.tableView.reloadData()
             
             // Increase the index
@@ -60,15 +103,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PostCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! PostCell
-        let postIndex = indexPath.row
-        let post: Post = self.postDict[postIndex]!
+        let postId = self.postIndexDict[indexPath.row]!
+        let post: Post = self.postDict[postId]!
         
         cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
         cell.lblContent.text = post.text
         cell.lblUserName.text = post.userName
-        
-        cell.postImage.image = self.postImagesDict[postIndex]
-        print(postIndex)
+        cell.postImage.image = self.postImagesDict[postId]
+    
         return cell
     }
     
@@ -79,20 +121,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func menuPressed(_ sender: Any) {
         menuView.isHidden = !menuView.isHidden;
-    }
-    
-    func fetchPosts(callback:@escaping (Post)->Void) {
-        let ref = FirebaseService.shareInstance.ref!
-        let postRef = ref.child("posts")
-        postRef.observe(.childAdded, with: { (snapshot : DataSnapshot)  in
-            if !snapshot.exists() { return }
-            
-            // Create the post from the snap shot
-            let dict = snapshot.value as! [String: Any]
-            let newPost = Post.createFromDict(dict: dict)
-            
-            // Return the callback
-            callback(newPost)
-        })
     }
 }
