@@ -28,9 +28,7 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func initProfileImage() {
         let profileImageId = LoginInfo.shareInstance.profileImageId
-        print(profileImageId)
         FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
-            print("hegati")
             self.profileImage.image = image
         })
     }

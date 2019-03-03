@@ -46,7 +46,6 @@ class LoginController: UIViewController {
                     let user = User.createFromDict(dict: value)
                     if password == user.password {
                         // Save the user in login info
-                        print(value["profileImageId"])
                         LoginInfo.shareInstance.initLoginInfo(user: user)
                         
                         // Go to the home page
