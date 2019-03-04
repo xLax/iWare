@@ -11,7 +11,7 @@ import UIKit
 class CustomTabBarViewController: UITabBarController {
 
     var tabBarIteam = UITabBarItem()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)

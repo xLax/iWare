@@ -163,7 +163,6 @@
 				849F4E4921EA5411000DDB71 /* LaunchScreen.storyboard */,
 				849F4E4C21EA5411000DDB71 /* Info.plist */,
 				849F4E6E21EBA3C7000DDB71 /* iWare-Bridging-Header.h */,
-				842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */,
 			);
 			path = iWare;
 			sourceTree = "<group>";
@@ -189,6 +188,7 @@
 		84E7C1DD222949890020C51F /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */,
 				84E7C1E4222A90300020C51F /* PostCell.swift */,
 			);
 			path = CustomViews;

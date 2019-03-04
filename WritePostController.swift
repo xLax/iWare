@@ -25,6 +25,19 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         userName = LoginInfo.shareInstance.userName
+        self.initProfileImage()
+        self.initLabels()
+    }
+    
+    func initProfileImage() {
+        let profileImageId = LoginInfo.shareInstance.profileImageId
+        FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
+            self.imgProfile.image = image
+        })
+    }
+    
+    func initLabels() {
+        lblUsername.text = LoginInfo.shareInstance.userName
     }
     
     @IBAction func OnAttach(_ sender: Any) {
@@ -54,18 +67,13 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         let postId = Utils.getUniqeId()
         var imageId = ""
         
-        // Check if there is image
-        if imageView.image == nil {
-            FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
-        } else {
-            // Get image id
-            imageId = Utils.getUniqeId()
-            FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
-               FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
-            })
-        }
-
-        performSegue(withIdentifier: "SeguePost", sender: self)
+        // Get image id
+        imageId = Utils.getUniqeId()
+        FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
+           FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
+        })
+        
+        self.tabBarController?.selectedIndex = 1
     }
     
     func checkValidation(text: String) -> Bool {

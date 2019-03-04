@@ -73,4 +73,19 @@ class FirebaseService {
         ref.child("users").child(userName).updateChildValues(["profileImageId": imageId])
         LoginInfo.shareInstance.profileImageId = imageId
     }
+    
+    func getUserByUserName(userName: String,callback:@escaping (User?)->Void) {
+        let userRef = ref.child("users")
+        userRef.child(userName).observeSingleEvent(of: .value, with: { (snapshot) in
+            if !snapshot.exists() { return }
+        
+            print(snapshot.value)
+            // Create the post from the snap shot
+            let dict = snapshot.value as! [String: Any]
+            let user = User.createFromDict(dict: dict)
+            
+            // Return the callback
+            callback(user)
+        })
+    }
 }

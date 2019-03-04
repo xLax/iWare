@@ -18,7 +18,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var postIndex: Int = 0
     
     var postDict = [String: Post]()
-    var postImagesDict = [String: UIImage]()
     var postIndexDict = [Int: String]()
     
     @IBOutlet weak var tableView: UITableView!
@@ -39,11 +38,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postId = postForDelete.id!
             
             let IndexForDelete = Utils.findKeyForValue(value: postId, dictionary: self.postIndexDict)!
-            print(IndexForDelete)
             self.postIndexDict[IndexForDelete] = nil
             
             // Set the values on the dicts to nil
-            self.postImagesDict[postId] = nil
             self.postDict[postId] = nil
         })
     }
@@ -79,16 +76,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func reloadPost(post: Post) {
-        FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
-            let postId = post.id!
-            self.postIndexDict[self.postIndex] = postId
-            self.postImagesDict[postId] = image
-            self.postDict[postId] = post
-            self.tableView.reloadData()
-            
-            // Increase the index
-            self.postIndex += 1
-        }
+        let postId = post.id!
+        self.postIndexDict[self.postIndex] = postId
+        self.postDict[postId] = post
+        self.tableView.reloadData()
+        
+        // Increase the index
+        self.postIndex += 1
+        
     }
     
     // number of rows in table view
@@ -107,9 +102,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let post: Post = self.postDict[postId]!
         
         cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
+        cell.postImage.image = #imageLiteral(resourceName: "Profile")
+
         cell.lblContent.text = post.text
         cell.lblUserName.text = post.userName
-        cell.postImage.image = self.postImagesDict[postId]
+        
+        FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
+            cell.postImage.image = image
+        }
+        
+        FirebaseService.shareInstance.getUserByUserName(userName: post.userName!, callback: { (user) in
+            FirebaseService.shareInstance.getImage(imageId: user!.profileImageId, callback: { (image) in
+                cell.imgProfile.image = image
+            })
+        })
+        
+        FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
+            cell.postImage.image = image
+        }
     
         return cell
     }
