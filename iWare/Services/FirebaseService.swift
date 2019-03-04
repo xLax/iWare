@@ -70,8 +70,20 @@ class FirebaseService {
     }
     
     func updateUserProfileImage(userName: String, imageId: String) {
-        ref.child("users").child(userName).updateChildValues(["profileImageId": imageId])
-        LoginInfo.shareInstance.profileImageId = imageId
+        // Delete the old profile image from the storage
+        self.getUserByUserName(userName: userName) { (user) in
+            print(user)
+            if let oldProfileImageId = user?.profileImageId {
+                print(oldProfileImageId)
+                self.deleteImageFromStorage(imageId: oldProfileImageId)
+                
+                // Update the user profile image id
+                self.ref.child("users").child(userName).updateChildValues(["profileImageId": imageId])
+                
+                // Update the login info
+                LoginInfo.shareInstance.profileImageId = imageId
+            }
+        }
     }
     
     func getUserByUserName(userName: String,callback:@escaping (User?)->Void) {
@@ -79,7 +91,6 @@ class FirebaseService {
         userRef.child(userName).observeSingleEvent(of: .value, with: { (snapshot) in
             if !snapshot.exists() { return }
         
-            print(snapshot.value)
             // Create the post from the snap shot
             let dict = snapshot.value as! [String: Any]
             let user = User.createFromDict(dict: dict)

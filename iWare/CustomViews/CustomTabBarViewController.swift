@@ -23,8 +23,8 @@ class CustomTabBarViewController: UITabBarController {
         tabBarIteam.image = DeSelectedImageAdd
         tabBarIteam.selectedImage = selectedImageAdd
         
-        let selectedImageAlert =  UIImage(named: "Alert_white")?.withRenderingMode(.alwaysOriginal)
-        let deselectedImageAlert = UIImage(named: "Alert_gray")?.withRenderingMode(.alwaysOriginal)
+        let selectedImageAlert =  UIImage(named: "Home")?.withRenderingMode(.alwaysOriginal)
+        let deselectedImageAlert = UIImage(named: "Home")?.withRenderingMode(.alwaysOriginal)
         tabBarIteam = (self.tabBar.items?[1])!
         tabBarIteam.image = deselectedImageAlert
         tabBarIteam.selectedImage =  selectedImageAlert
@@ -48,17 +48,5 @@ class CustomTabBarViewController: UITabBarController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-
-extension UIImage {
-    class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        let rect: CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
     }
 }

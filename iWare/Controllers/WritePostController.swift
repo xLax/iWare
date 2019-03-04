@@ -24,6 +24,10 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Make the profile image circular
+        imgProfile.makeCircular()
+        
         userName = LoginInfo.shareInstance.userName
         self.initProfileImage()
         self.initLabels()

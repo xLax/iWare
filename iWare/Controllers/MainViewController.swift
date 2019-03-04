@@ -11,8 +11,7 @@ import FirebaseDatabase
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var mainTitle: UILabel!
     
     var cellReuseIdentifier = "cell"
     var postIndex: Int = 0
@@ -24,6 +23,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Make the title circle
+        mainTitle.makeCircular()
         
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
@@ -103,6 +105,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
         cell.postImage.image = #imageLiteral(resourceName: "Profile")
+        
+        // Make the image profile circle
+        cell.imgProfile.makeCircular()
 
         cell.lblContent.text = post.text
         cell.lblUserName.text = post.userName
@@ -127,9 +132,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-    }
-    
-    @IBAction func menuPressed(_ sender: Any) {
-        menuView.isHidden = !menuView.isHidden;
     }
 }

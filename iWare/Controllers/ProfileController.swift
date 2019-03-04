@@ -22,6 +22,9 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Load data from login info
         initLabels()
         
+        // Make the profile image circular
+        profileImage.makeCircular()
+        
         // Init profile image
         initProfileImage()
     }
