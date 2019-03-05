@@ -15,11 +15,24 @@ class LoginController: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var lblError: UILabel!
+    @IBOutlet weak var lblTitle: UITextView!
+    @IBOutlet weak var imgLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         txtUsername.text = "rew"
         txtPassword.text = "r"
+        
+        // Init Views
+        initViews()
+    }
+    
+    func initViews() {
+        // Set the logo
+        imgLogo.image = UIImage(named: "logo")?.withRenderingMode(.alwaysOriginal)
+        
+        // Make him circular
+        imgLogo.makeCircular()
     }
 
     @IBAction func OnConnect(_ sender: Any)
@@ -27,11 +40,6 @@ class LoginController: UIViewController {
         if checkEmptyFields() {
             connectUser()
         }
-    }
-    
-    func deletePost(post: Post) {
-        FirebaseService.shareInstance.deleteImageFromStorage(imageId: post.imageId!)
-        FirebaseService.shareInstance.deletePost(id: post.id!)
     }
     
     func connectUser() {

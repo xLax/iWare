@@ -31,6 +31,20 @@ class Post {
         ]
     }
     
+    static func findIndexByPostId(posts: [Post], post: Post) -> Int {
+        var currIndex = 0
+        
+        for currPost in posts {
+            if post.id == currPost.id {
+                return currIndex
+            }
+            
+            currIndex += 1
+        }
+        
+        return -1
+    }
+    
     static func createFromDict(dict:[String:Any]) -> Post {
         return Post(id: dict["id"] as! String, userName: dict["userName"] as! String, text: dict["text"] as! String, imageId: dict["imageId"] as! String)
     }

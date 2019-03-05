@@ -14,18 +14,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var mainTitle: UILabel!
     
     var cellReuseIdentifier = "cell"
-    var postIndex: Int = 0
     
-    var postDict = [String: Post]()
-    var postIndexDict = [Int: String]()
-    
+    var posts = [Post]()
+    @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Make the title circle
-        mainTitle.makeCircular()
+        // Init Views
+        self.initViews()
         
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
@@ -37,14 +35,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         
         listenForDeletePost(callback: { (postForDelete: Post) in
-            let postId = postForDelete.id!
-            
-            let IndexForDelete = Utils.findKeyForValue(value: postId, dictionary: self.postIndexDict)!
-            self.postIndexDict[IndexForDelete] = nil
-            
-            // Set the values on the dicts to nil
-            self.postDict[postId] = nil
+            self.deletePost(postForDelete: postForDelete)
         })
+    }
+    
+    func deletePost(postForDelete: Post) {
+        // Remove from the array
+        let indexForDelete = Post.findIndexByPostId(posts: self.posts, post: postForDelete)
+        self.posts.remove(at: indexForDelete)
+
+        // Delete the post image from the storage
+        FirebaseService.shareInstance.deleteImageFromStorage(imageId: postForDelete.imageId!)
+        
+        // Update the table
+        self.tableView.reloadData()
+    }
+
+    func initViews() {
+        // Make the logo circular
+        imgLogo.makeCircular()
+        
+        // Make the title circle
+        mainTitle.makeCircular()
     }
     
     func fetchPosts(callback:@escaping (Post)->Void) {
@@ -78,19 +90,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func reloadPost(post: Post) {
-        let postId = post.id!
-        self.postIndexDict[self.postIndex] = postId
-        self.postDict[postId] = post
+        self.posts.append(post)
         self.tableView.reloadData()
-        
-        // Increase the index
-        self.postIndex += 1
-        
     }
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.postDict.count
+        return self.posts.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -100,8 +106,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PostCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! PostCell
-        let postId = self.postIndexDict[indexPath.row]!
-        let post: Post = self.postDict[postId]!
+      
+        let post: Post = self.posts[indexPath.row]
         
         cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
         cell.postImage.image = #imageLiteral(resourceName: "Profile")
@@ -110,6 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.imgProfile.makeCircular()
 
         cell.lblContent.text = post.text
+        print(cell.lblContent.text)
         cell.lblUserName.text = post.userName
         
         FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
@@ -125,8 +132,37 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
             cell.postImage.image = image
         }
+        
+        cell.imgDelete.isUserInteractionEnabled = true
+        cell.imgDelete.tag = indexPath.row
+        cell.imgDelete.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
     
         return cell
+    }
+    
+    @objc private func imageTapped(_ recognizer: UITapGestureRecognizer) {
+        let postIndex = recognizer.view?.tag
+        let postForDelete = self.posts[postIndex!]
+        
+        // Show alert before delete
+        showAlertBeforeDelete(postForDelete: postForDelete)
+    }
+    
+    func showAlertBeforeDelete(postForDelete: Post) {
+        let alertController = UIAlertController(title: "Alert", message: "Are You Sure You Want To Delete This Post ?.", preferredStyle: .alert)
+        
+        let action2 = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
+        }
+        
+        let action3 = UIAlertAction(title: "Yes Delete It!", style: .destructive) { (action:UIAlertAction) in
+            // Delete the post from the db
+            FirebaseService.shareInstance.deletePost(id: postForDelete.id!)
+        }
+    
+        alertController.addAction(action2)
+        alertController.addAction(action3)
+        self.present(alertController, animated: true, completion: nil)
+
     }
     
     // method to run when table view cell is tapped

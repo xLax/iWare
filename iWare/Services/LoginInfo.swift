@@ -23,7 +23,6 @@ class LoginInfo {
         lastName = user.lastName
         birthDate = user.birthDate
         profileImageId = user.profileImageId
-        print(user.getDict())
     }
     
     init() {}
