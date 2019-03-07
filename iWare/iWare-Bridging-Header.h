@@ -3,3 +3,9 @@
 //
 
 
+#ifndef iWare-Bridging-Header_h
+#define iWare-Bridging-Header_h
+
+#import <sqlite3.h>
+
+#endif

@@ -20,11 +20,23 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtUsername.text = "rew"
-        txtPassword.text = "r"
+        
+        // Init tables
+        self.initTables()
+        
+        txtUsername.text = "d"
+        txtPassword.text = "d"
         
         // Init Views
         initViews()
+    }
+    
+    func initTables() {
+        // Connect the db
+        SQLiteService.connectDb()
+        
+        // Create the table
+        SQLiteService.createPostsTable()
     }
     
     func initViews() {

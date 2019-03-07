@@ -116,7 +116,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.imgProfile.makeCircular()
 
         cell.lblContent.text = post.text
-        print(cell.lblContent.text)
         cell.lblUserName.text = post.userName
         
         FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in

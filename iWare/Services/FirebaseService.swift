@@ -72,9 +72,7 @@ class FirebaseService {
     func updateUserProfileImage(userName: String, imageId: String) {
         // Delete the old profile image from the storage
         self.getUserByUserName(userName: userName) { (user) in
-            print(user)
             if let oldProfileImageId = user?.profileImageId {
-                print(oldProfileImageId)
                 self.deleteImageFromStorage(imageId: oldProfileImageId)
                 
                 // Update the user profile image id

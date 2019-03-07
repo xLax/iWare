@@ -33,11 +33,30 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         self.initLabels()
     }
     
+    func clearFields() {
+        imgProfile.image = #imageLiteral(resourceName: "Profile")
+        inputText.text = ""
+    }
+    
     func initProfileImage() {
         let profileImageId = LoginInfo.shareInstance.profileImageId
-        FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
-            self.imgProfile.image = image
-        })
+        
+        if profileImageId != "" {
+            ImageCacheService.getImageFromFile(imageId: profileImageId, callback:{ (image) in
+                if let imageFromCache = image {
+                    print("load image from cache", imageFromCache)
+                    self.imgProfile.image = imageFromCache
+                } else {
+                    FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
+                        self.imgProfile.image = image
+                        print("save image to cache", image)
+                        ImageCacheService.saveImageToFile(image: image!, imageId: profileImageId)
+                    })
+                }
+            })
+        } else {
+            return
+        }
     }
     
     func initLabels() {
@@ -69,13 +88,20 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         
         let postId = Utils.getUniqeId()
-        var imageId = ""
+        var imageId = Utils.getUniqeId()
         
-        // Get image id
-        imageId = Utils.getUniqeId()
+        // Save the image to the firebase
         FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
            FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
         })
+        
+        let post = Post(id: postId, userName: userName, text: text, imageId: imageId)
+        
+        // Save post to sql lite
+        SQLiteService.insertPost(post: post)
+        
+        // Clear the fields
+        self.clearFields()
         
         self.tabBarController?.selectedIndex = 1
     }

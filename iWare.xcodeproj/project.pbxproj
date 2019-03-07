@@ -20,6 +20,7 @@
 		849908B5222EDF1200E3FFF1 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908B3222EDF1200E3FFF1 /* ImageCacheService.swift */; };
 		849908B6222EDF1200E3FFF1 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908B4222EDF1200E3FFF1 /* SQLiteService.swift */; };
 		849908B8222EF93F00E3FFF1 /* RemoveElementArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908B7222EF93F00E3FFF1 /* RemoveElementArray.swift */; };
+		849908BA222F070200E3FFF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 849908B9222F070200E3FFF1 /* libsqlite3.0.tbd */; };
 		849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E4021EA540F000DDB71 /* AppDelegate.swift */; };
 		849F4E4621EA540F000DDB71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849F4E4421EA540F000DDB71 /* Main.storyboard */; };
 		849F4E4821EA5411000DDB71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 849F4E4721EA5411000DDB71 /* Assets.xcassets */; };
@@ -30,7 +31,6 @@
 		84EB0EF2222C305A0004635E /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB0EF0222C305A0004635E /* LoginInfo.swift */; };
 		84EB0EF3222C305A0004635E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB0EF1222C305A0004635E /* FirebaseService.swift */; };
 		84EB0EF5222C30650004635E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB0EF4222C30650004635E /* Utils.swift */; };
-		84F13392222DA19400FC3875 /* home_icon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84F13391222DA19400FC3875 /* home_icon.jpeg */; };
 		84F13395222DB04B00FC3875 /* CircleUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F13394222DB04B00FC3875 /* CircleUiView.swift */; };
 		84F13397222DB0D100FC3875 /* imageWithColorUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F13396222DB0D100FC3875 /* imageWithColorUIImage.swift */; };
 		C395D64538276A59472461B3 /* Pods_iWare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43608AFDE19B28180679765B /* Pods_iWare.framework */; };
@@ -68,6 +68,7 @@
 		849908B3222EDF1200E3FFF1 /* ImageCacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCacheService.swift; path = ../../../../Downloads/ImageCacheService.swift; sourceTree = "<group>"; };
 		849908B4222EDF1200E3FFF1 /* SQLiteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteService.swift; path = ../../../../Downloads/SQLiteService.swift; sourceTree = "<group>"; };
 		849908B7222EF93F00E3FFF1 /* RemoveElementArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveElementArray.swift; sourceTree = "<group>"; };
+		849908B9222F070200E3FFF1 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		849F4E3D21EA540F000DDB71 /* iWare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849F4E4021EA540F000DDB71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849F4E4521EA540F000DDB71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		84EB0EF0222C305A0004635E /* LoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		84EB0EF1222C305A0004635E /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		84EB0EF4222C30650004635E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		84F13391222DA19400FC3875 /* home_icon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = home_icon.jpeg; path = ../../../Downloads/home_icon.jpeg; sourceTree = "<group>"; };
 		84F13394222DB04B00FC3875 /* CircleUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleUiView.swift; sourceTree = "<group>"; };
 		84F13396222DB0D100FC3875 /* imageWithColorUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageWithColorUIImage.swift; sourceTree = "<group>"; };
 		BBB3165B484C8E6B62E3DCF6 /* Pods_iWareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849908BA222F070200E3FFF1 /* libsqlite3.0.tbd in Frameworks */,
 				C395D64538276A59472461B3 /* Pods_iWare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +162,6 @@
 				849F4E4021EA540F000DDB71 /* AppDelegate.swift */,
 				849F4E4421EA540F000DDB71 /* Main.storyboard */,
 				849F4E4721EA5411000DDB71 /* Assets.xcassets */,
-				84F13391222DA19400FC3875 /* home_icon.jpeg */,
 				849F4E4C21EA5411000DDB71 /* Info.plist */,
 				849F4E6E21EBA3C7000DDB71 /* iWare-Bridging-Header.h */,
 			);
@@ -233,6 +233,7 @@
 		C075CA0A3F60218B3ACE7580 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				849908B9222F070200E3FFF1 /* libsqlite3.0.tbd */,
 				43608AFDE19B28180679765B /* Pods_iWare.framework */,
 				304B1EDF22A4E079F6C7BD41 /* Pods_iWareTests.framework */,
 				BBB3165B484C8E6B62E3DCF6 /* Pods_iWareUITests.framework */,
@@ -359,7 +360,6 @@
 				8491D78F221C5B2C00189511 /* GoogleService-Info.plist in Resources */,
 				849F4E4821EA5411000DDB71 /* Assets.xcassets in Resources */,
 				849F4E4621EA540F000DDB71 /* Main.storyboard in Resources */,
-				84F13392222DA19400FC3875 /* home_icon.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

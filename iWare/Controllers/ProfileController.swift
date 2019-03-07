@@ -31,9 +31,23 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func initProfileImage() {
         let profileImageId = LoginInfo.shareInstance.profileImageId
-        FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
-            self.profileImage.image = image
-        })
+        
+        if profileImageId != "" {
+            ImageCacheService.getImageFromFile(imageId: profileImageId, callback:{ (image) in
+                if let imageFromCache = image {
+                    print("load image from cache", imageFromCache)
+                    self.profileImage.image = imageFromCache
+                } else {
+                    FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
+                        self.profileImage.image = image
+                        print("save image to cache", image)
+                        ImageCacheService.saveImageToFile(image: image!, imageId: profileImageId)
+                    })
+                }
+            })
+        } else {
+            return
+        }
     }
     
     func initLabels() {
@@ -70,5 +84,8 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
         FirebaseService.shareInstance.saveImage(image: image, imageId: imageId, callback: { (url) in
             print("imaged saved in the storage")
         })
+        
+        // Save to the cache
+        ImageCacheService.saveImageToFile(image: image, imageId: imageId)
     }
 }
