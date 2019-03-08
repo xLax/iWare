@@ -24,7 +24,7 @@ class RegisterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ref = Database.database().reference()
+        ref = FirebaseService.shareInstance.ref
     }
     
 
@@ -65,15 +65,24 @@ class RegisterController: UIViewController {
 
         if boolIsOk == true
         {
-            addUser()
-            performSegue(withIdentifier: "SegueRegister", sender: self)
+            if (!checkUserExistence(userName: txtUsername.text!)) {
+                lblErrors.text = "This username is already exists please choose another one"
+            } else {
+                addUser()
+                lblErrors.text = ""
+                showToast(message: "You successfully registered !")
+                performSegue(withIdentifier: "RegisterSegue", sender: self)
+            }
+            
         }
         else
         {
-            lblErrors.text = "Please Fill All The Fields";
+            lblErrors.text = "Please Fill All The Fields"
         }
-        
-        addUser()
+    }
+    
+    func checkUserExistence(userName: String) -> Bool {
+        return true
     }
     
     func addUser() {

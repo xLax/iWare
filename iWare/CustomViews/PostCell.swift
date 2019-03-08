@@ -11,8 +11,8 @@ import UIKit
 
 class PostCell: UITableViewCell {
     @IBOutlet weak var imgProfile: UIImageView!
-    @IBOutlet weak var lblContent: UILabel!
     @IBOutlet weak var lblUserName: UILabel!
+    @IBOutlet weak var lblContent: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var imgDelete: UIImageView!
 }

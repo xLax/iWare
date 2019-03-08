@@ -46,10 +46,9 @@ class LoginController: UIViewController {
         // Make him circular
         imgLogo.makeCircular()
     }
-
-    @IBAction func OnConnect(_ sender: Any)
-    {
-        if checkEmptyFields() {
+    
+    @IBAction func connect(_ sender: Any) {
+        if validateForm() {
             connectUser()
         }
     }
@@ -59,7 +58,6 @@ class LoginController: UIViewController {
         let password = txtPassword.text!
         
         let currentUserRef = FirebaseService.shareInstance.ref.child("users").child(userName)
-        
         currentUserRef.observeSingleEvent(of: .value, with: { (snap : DataSnapshot)  in
             if snap.exists() {
                 if let value = snap.value as? [String:Any] {
@@ -67,20 +65,21 @@ class LoginController: UIViewController {
                     if password == user.password {
                         // Save the user in login info
                         LoginInfo.shareInstance.initLoginInfo(user: user)
-                        
+                        self.lblError.text = ""
+
                         // Go to the home page
-                        self.performSegue(withIdentifier: "SegueConnect", sender: self)
+                        self.performSegue(withIdentifier: "ConnectSegue", sender: self)
                     } else {
-                        self.lblError.text = "Username or Password are invalid";
+                        self.lblError.text = "Username or Password are invalid"
                     }
                 }
             } else {
-                self.lblError.text = "Username or Password are invalid";
+                self.lblError.text = "Username or Password are invalid"
             }
         })
     }
     
-    func checkEmptyFields() -> Bool {
+    func validateForm() -> Bool {
         var validForm = true
         let userName = txtUsername.text!
         let password = txtPassword.text!

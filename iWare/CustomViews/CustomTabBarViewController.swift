@@ -23,8 +23,8 @@ class CustomTabBarViewController: UITabBarController {
         tabBarIteam.image = DeSelectedImageAdd
         tabBarIteam.selectedImage = selectedImageAdd
         
-        let selectedImageAlert =  UIImage(named: "Home")?.withRenderingMode(.alwaysOriginal)
-        let deselectedImageAlert = UIImage(named: "Home")?.withRenderingMode(.alwaysOriginal)
+        let selectedImageAlert =  UIImage(named: "Alert_white")?.withRenderingMode(.alwaysOriginal)
+        let deselectedImageAlert = UIImage(named: "Alert_gray")?.withRenderingMode(.alwaysOriginal)
         tabBarIteam = (self.tabBar.items?[1])!
         tabBarIteam.image = deselectedImageAlert
         tabBarIteam.selectedImage =  selectedImageAlert

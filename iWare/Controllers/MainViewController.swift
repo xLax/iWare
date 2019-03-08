@@ -29,14 +29,35 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         
+        let ref = FirebaseService.shareInstance.ref!
+        ref.child( ".info/connected").observe(.value, with: { snapshot in
+            if let connected = snapshot.value as? Bool {
+                print("Connected")
+            } else {
+                print("Not connected")
+            }
+        })
+        
+//        self.loadPostsFromLocalStorage()
+        
         // Get all the posts
         fetchPosts(callback: { (newPost: Post) in
+            print(newPost.getDict())
             self.reloadPost(post: newPost)
+            self.savePostLocally(post: newPost)
         })
         
         listenForDeletePost(callback: { (postForDelete: Post) in
             self.deletePost(postForDelete: postForDelete)
         })
+    }
+    
+    func loadPostsFromLocalStorage() {
+        self.posts = SQLiteService.getAllPosts()
+    }
+    
+    func savePostLocally(post: Post) {
+        SQLiteService.insertPost(post: post)
     }
     
     func deletePost(postForDelete: Post) {
@@ -46,6 +67,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Delete the post image from the storage
         FirebaseService.shareInstance.deleteImageFromStorage(imageId: postForDelete.imageId!)
+        
+        // Delete post from locally
+        SQLiteService.deletePost(id: postForDelete.id!)
         
         // Update the table
         self.tableView.reloadData()
@@ -100,13 +124,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 300
     }
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:PostCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! PostCell
-      
         let post: Post = self.posts[indexPath.row]
         
         cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
@@ -118,19 +141,31 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblContent.text = post.text
         cell.lblUserName.text = post.userName
         
-        FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
-            cell.postImage.image = image
-        }
-        
-        FirebaseService.shareInstance.getUserByUserName(userName: post.userName!, callback: { (user) in
-            FirebaseService.shareInstance.getImage(imageId: user!.profileImageId, callback: { (image) in
-                cell.imgProfile.image = image
-            })
+        ImageCacheService.getImageFromFile(imageId: post.imageId!, callback: { (image) in
+            if let imageFromCache = image {
+                cell.postImage.image = image
+            } else {
+                print(post.getDict())
+                print(post.imageId)
+                FirebaseService.shareInstance.getImage(imageId: post.imageId!, callback: { (image) in
+                    cell.postImage.image = image
+                    ImageCacheService.saveImageToFile(image: image!, imageId: post.imageId!)
+                })
+            }
         })
         
-        FirebaseService.shareInstance.getImage(imageId: post.imageId!) { (image) in
-            cell.postImage.image = image
-        }
+        FirebaseService.shareInstance.getUserByUserName(userName: post.userName!, callback: { (user) in
+            ImageCacheService.getImageFromFile(imageId: user!.profileImageId, callback: { (image) in
+                if let imageFromCache = image {
+                    cell.imgProfile.image = image
+                } else {
+                    FirebaseService.shareInstance.getImage(imageId: user!.profileImageId, callback: { (image) in
+                        cell.imgProfile.image = image
+                        ImageCacheService.saveImageToFile(image: image!, imageId: post.imageId!)
+                    })
+                }
+            })
+        })
         
         cell.imgDelete.isUserInteractionEnabled = true
         cell.imgDelete.tag = indexPath.row

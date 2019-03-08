@@ -31,17 +31,21 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func initProfileImage() {
         let profileImageId = LoginInfo.shareInstance.profileImageId
-        
         if profileImageId != "" {
+            print(profileImageId)
             ImageCacheService.getImageFromFile(imageId: profileImageId, callback:{ (image) in
                 if let imageFromCache = image {
                     print("load image from cache", imageFromCache)
                     self.profileImage.image = imageFromCache
                 } else {
                     FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
-                        self.profileImage.image = image
-                        print("save image to cache", image)
-                        ImageCacheService.saveImageToFile(image: image!, imageId: profileImageId)
+                        if (image == nil) {
+                            return
+                        } else {
+                            self.profileImage.image = image
+                            print("save image to cache", image)
+                            ImageCacheService.saveImageToFile(image: image!, imageId: profileImageId)
+                        }
                     })
                 }
             })

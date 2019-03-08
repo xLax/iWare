@@ -46,4 +46,8 @@ class Utils {
         
         return nil
     }
+    
+    static func navigate(identifier: String) {
+        
+    }
 }
