@@ -15,9 +15,10 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lblUsername: UITextView!
     @IBOutlet weak var inputText: UITextField!
-    @IBOutlet weak var btnAttach: UIButton!
     @IBOutlet weak var lblError: UILabel!
     @IBOutlet weak var btnPost: UIButton!
+    
+    var loaderSpinner: UIView = UIView()
     
     var imagePicker = UIImagePickerController()
     
@@ -30,8 +31,14 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         imgProfile.makeCircular()
         
         userName = LoginInfo.shareInstance.userName
+        initViews()
+    }
+    
+    func initViews() {
         self.initProfileImage()
         self.initLabels()
+        loaderSpinner = Utils.addSpinnerToView(viewController: self)
+        showSpinner(showIndication: false)
     }
     
     func clearFields() {
@@ -66,7 +73,12 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         lblUsername.text = LoginInfo.shareInstance.userName
     }
     
-    @IBAction func OnAttach(_ sender: Any) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        imageView.image = image
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func uploadPhoto(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
             let picker = UIImagePickerController()
             picker.allowsEditing = false
@@ -74,11 +86,6 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
             picker.delegate = self
             self.present(picker, animated: true, completion: nil)
         }
-    }
-    
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        imageView.image = image
-        self.dismiss(animated: true, completion: nil)
     }
     
     func checkValidation() -> Bool {
@@ -94,9 +101,7 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         return validateForm
     }
     
-    
-    @IBAction func OnPost(_ sender: Any)
-    {
+    @IBAction func uploadPost(_ sender: Any) {
         if (!checkValidation()) {
             return
         }
@@ -110,23 +115,37 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         let postId = Utils.getUniqeId()
         var imageId = Utils.getUniqeId()
         
+        // Show Spinner
+        showSpinner(showIndication: true)
+        
         // Save the image to the firebase
         FirebaseService.shareInstance.saveImage(image: imageView.image!, imageId: imageId, callback: { (imageUrl) in
-           FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
+            FirebaseService.shareInstance.createPost(id: postId, userName: self.userName, text: text, imageId: imageId)
+            
+            let post = Post(id: postId, userName: self.userName, text: text, imageId: imageId)
+            
+            // Save post to sql lite
+            SQLiteService.insertPost(post: post)
+            
+            // Hide Spinner
+            self.showSpinner(showIndication: false)
+            
+            // Move to the hom screen
+            self.tabBarController?.selectedIndex = 1
         })
-        
-        let post = Post(id: postId, userName: userName, text: text, imageId: imageId)
-        
-        // Save post to sql lite
-        SQLiteService.insertPost(post: post)
-        SQLiteService.insertPost(post: post)
-        SQLiteService.insertPost(post: post)
-
         
         // Clear the fields
         self.clearFields()
-        
-        self.tabBarController?.selectedIndex = 1
+    }
+    
+    func showSpinner(showIndication: Bool) {
+        imgProfile.isHidden = showIndication
+        imageView.isHidden = showIndication
+        lblUsername.isHidden = showIndication
+        inputText.isHidden = showIndication
+        lblError.isHidden = showIndication
+        btnPost.isHidden = showIndication
+        loaderSpinner.isHidden = !showIndication
     }
     
     func checkValidation(text: String) -> Bool {

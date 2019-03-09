@@ -19,6 +19,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
+    var loaderSpinner: UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,25 +32,26 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         
         let ref = FirebaseService.shareInstance.ref!
+        
         ref.child( ".info/connected").observe(.value, with: { snapshot in
-            if let connected = snapshot.value as? Bool {
-                print("Connected")
+            if snapshot.value as! Bool {
+                // Get all the posts from the internet
+                self.fetchPosts(callback: { (newPost: Post) in
+                    print(newPost.getDict())
+                    self.reloadPost(post: newPost)
+                    self.savePostLocally(post: newPost)
+                })
+                
+                // Listen to delete
+                self.listenForDeletePost(callback: { (postForDelete: Post) in
+                    self.deletePost(postForDelete: postForDelete)
+                })
+                
+                print("Connected To internet")
             } else {
-                print("Not connected")
+                print("No Connection")
+                self.loadPostsFromLocalStorage()
             }
-        })
-        
-//        self.loadPostsFromLocalStorage()
-        
-        // Get all the posts
-        fetchPosts(callback: { (newPost: Post) in
-            print(newPost.getDict())
-            self.reloadPost(post: newPost)
-            self.savePostLocally(post: newPost)
-        })
-        
-        listenForDeletePost(callback: { (postForDelete: Post) in
-            self.deletePost(postForDelete: postForDelete)
         })
     }
     
@@ -81,6 +84,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Make the title circle
         mainTitle.makeCircular()
+        
+        // Add Spinner
+//        Utils.addSpinnerToView(viewController: self)
+        
+        // Show loader
+//        showSpinner(showIndication: true)
+    }
+    
+    func showSpinner(showIndication: Bool) {
+        self.tableView.isHidden = showIndication
+        loaderSpinner.isHidden = !showIndication
     }
     
     func fetchPosts(callback:@escaping (Post)->Void) {
@@ -129,11 +143,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("refresh colum number", indexPath.row)
         let cell:PostCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! PostCell
         let post: Post = self.posts[indexPath.row]
-        
-        cell.imgProfile.image = #imageLiteral(resourceName: "Profile")
-        cell.postImage.image = #imageLiteral(resourceName: "Profile")
         
         // Make the image profile circle
         cell.imgProfile.makeCircular()
@@ -142,12 +154,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblUserName.text = post.userName
         
         ImageCacheService.getImageFromFile(imageId: post.imageId!, callback: { (image) in
+            print("get image cache", indexPath.row)
             if let imageFromCache = image {
                 cell.postImage.image = image
             } else {
-                print(post.getDict())
-                print(post.imageId)
                 FirebaseService.shareInstance.getImage(imageId: post.imageId!, callback: { (image) in
+                    print("get firebase image", indexPath.row)
                     cell.postImage.image = image
                     ImageCacheService.saveImageToFile(image: image!, imageId: post.imageId!)
                 })
@@ -156,12 +168,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         FirebaseService.shareInstance.getUserByUserName(userName: post.userName!, callback: { (user) in
             ImageCacheService.getImageFromFile(imageId: user!.profileImageId, callback: { (image) in
+                print("get image cache for user", indexPath.row)
                 if let imageFromCache = image {
                     cell.imgProfile.image = image
                 } else {
                     FirebaseService.shareInstance.getImage(imageId: user!.profileImageId, callback: { (image) in
-                        cell.imgProfile.image = image
-                        ImageCacheService.saveImageToFile(image: image!, imageId: post.imageId!)
+                        print("get firebase image for user", indexPath.row)
+                        
+                        if image != nil {
+                            cell.imgProfile.image = image
+                            ImageCacheService.saveImageToFile(image: image!, imageId: post.imageId!)
+                        }
                     })
                 }
             })

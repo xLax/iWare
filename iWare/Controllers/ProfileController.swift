@@ -32,7 +32,6 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
     func initProfileImage() {
         let profileImageId = LoginInfo.shareInstance.profileImageId
         if profileImageId != "" {
-            print(profileImageId)
             ImageCacheService.getImageFromFile(imageId: profileImageId, callback:{ (image) in
                 if let imageFromCache = image {
                     print("load image from cache", imageFromCache)

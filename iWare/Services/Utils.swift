@@ -47,7 +47,11 @@ class Utils {
         return nil
     }
     
-    static func navigate(identifier: String) {
+    static func addSpinnerToView(viewController: UIViewController) -> UIView {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let loadingView = SpinnerView(frame: CGRect(x: screenSize.width/2 - 50, y: screenSize.height/2 - 50, width: 100, height: 100))
+        viewController.view.addSubview(loadingView)
         
+        return loadingView
     }
 }

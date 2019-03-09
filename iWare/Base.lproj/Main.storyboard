@@ -242,51 +242,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqZ-AO-AAp">
-                                <rect key="frame" x="10" y="361" width="112" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Attach">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Attach">
-                                            <attributes>
-                                                <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="OnAttach:" destination="G1X-ky-6oX" eventType="touchUpInside" id="WJ4-TM-9xl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qra-5C-6tN">
-                                <rect key="frame" x="228" y="348" width="99" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Post">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Post">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="system" size="18"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="OnPost:" destination="G1X-ky-6oX" eventType="touchUpInside" id="3nv-Y0-Bf0"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-BT-iaG">
-                                <rect key="frame" x="10" y="192" width="317" height="132"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIg-pJ-oHH">
-                                <rect key="frame" x="16" y="409" width="351" height="110"/>
+                                <rect key="frame" x="8" y="438" width="351" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.2142909820034854" blue="0.087931378887746825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gL4-xk-5eL">
+                                <rect key="frame" x="10" y="389" width="343" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Upload Post">
+                                            <attributes>
+                                                <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPost:" destination="G1X-ky-6oX" eventType="touchUpInside" id="ehK-2C-9dk"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uploadImage" translatesAutoresizingMaskIntoConstraints="NO" id="daG-xk-pCf">
+                                <rect key="frame" x="10" y="180" width="343" height="201"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYJ-ap-AM4">
+                                <rect key="frame" x="10" y="180" width="343" height="201"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="G1X-ky-6oX" eventType="touchUpInside" id="BRO-Kr-f4c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rl0-s7-Eod"/>
@@ -294,9 +284,8 @@
                     <tabBarItem key="tabBarItem" title="" id="KFg-dg-kqk"/>
                     <navigationItem key="navigationItem" title="Write Post" id="kpS-QG-nR7"/>
                     <connections>
-                        <outlet property="btnAttach" destination="zqZ-AO-AAp" id="HYk-jN-Jsi"/>
-                        <outlet property="btnPost" destination="qra-5C-6tN" id="sop-XN-Sfw"/>
-                        <outlet property="imageView" destination="4dd-BT-iaG" id="voW-X9-3ha"/>
+                        <outlet property="btnPost" destination="gL4-xk-5eL" id="tVC-r9-bqa"/>
+                        <outlet property="imageView" destination="daG-xk-pCf" id="DUe-1m-Bci"/>
                         <outlet property="imgProfile" destination="syt-qR-86c" id="fDn-zP-TMT"/>
                         <outlet property="inputText" destination="CrU-Wi-4TH" id="N8Z-Ky-sxF"/>
                         <outlet property="lblError" destination="eIg-pJ-oHH" id="73H-3z-GUq"/>
@@ -546,12 +535,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Attach" width="48" height="48"/>
-        <image name="Post" width="48" height="48"/>
         <image name="Profile" width="48" height="48"/>
         <image name="Profile_gray" width="19" height="19"/>
         <image name="log off" width="128" height="128"/>
         <image name="logo" width="200" height="200"/>
+        <image name="uploadImage" width="750" height="750"/>
         <image name="x_icon" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>

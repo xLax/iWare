@@ -28,6 +28,7 @@
 		849F4E6121EA5411000DDB71 /* iWareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E6021EA5411000DDB71 /* iWareUITests.swift */; };
 		849F4E7A21EE6A34000DDB71 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E7921EE6A34000DDB71 /* MainViewController.swift */; };
 		84A5856222319A8B004C2AE8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5856122319A8B004C2AE8 /* Toast.swift */; };
+		84BDE4C12233AC3E0013967F /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BDE4C02233AC3E0013967F /* SpinnerView.swift */; };
 		84E7C1E5222A90300020C51F /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7C1E4222A90300020C51F /* PostCell.swift */; };
 		84EB0EF2222C305A0004635E /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB0EF0222C305A0004635E /* LoginInfo.swift */; };
 		84EB0EF3222C305A0004635E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB0EF1222C305A0004635E /* FirebaseService.swift */; };
@@ -84,6 +85,7 @@
 		849F4E6E21EBA3C7000DDB71 /* iWare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iWare-Bridging-Header.h"; sourceTree = "<group>"; };
 		849F4E7921EE6A34000DDB71 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		84A5856122319A8B004C2AE8 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		84BDE4C02233AC3E0013967F /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		84E7C1E4222A90300020C51F /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		84EB0EF0222C305A0004635E /* LoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		84EB0EF1222C305A0004635E /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */,
 				84E7C1E4222A90300020C51F /* PostCell.swift */,
+				84BDE4C02233AC3E0013967F /* SpinnerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				84A5856222319A8B004C2AE8 /* Toast.swift in Sources */,
 				84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */,
 				84EB0EF5222C30650004635E /* Utils.swift in Sources */,
+				84BDE4C12233AC3E0013967F /* SpinnerView.swift in Sources */,
 				84EB0EF2222C305A0004635E /* LoginInfo.swift in Sources */,
 				84E7C1E5222A90300020C51F /* PostCell.swift in Sources */,
 				84EB0EF3222C305A0004635E /* FirebaseService.swift in Sources */,
