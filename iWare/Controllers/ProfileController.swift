@@ -16,9 +16,21 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var lblFirstName: UILabel!
     @IBOutlet weak var lblLastName: UILabel!
     
+    @IBOutlet weak var titleBirthday: UILabel!
+    @IBOutlet weak var titleFirstName: UILabel!
+    @IBOutlet weak var btnLogOut: UIButton!
+    @IBOutlet weak var titleLastName: UILabel!
+    
+    var loaderSpinner: UIView = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Init views
+        initViews()
+    }
+    
+    func initViews() {
         // Load data from login info
         initLabels()
         
@@ -27,6 +39,10 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         // Init profile image
         initProfileImage()
+        
+        // Init spinner loader
+        loaderSpinner = Utils.addSpinnerToView(viewController: self)
+        showSpinner(showIndication: false)
     }
     
     func initProfileImage() {
@@ -83,12 +99,28 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
         let userName = LoginInfo.shareInstance.userName
         FirebaseService.shareInstance.updateUserProfileImage(userName: userName, imageId: imageId)
         
+        self.showSpinner(showIndication: true)
+        
         // Save the image in the storage
         FirebaseService.shareInstance.saveImage(image: image, imageId: imageId, callback: { (url) in
             print("imaged saved in the storage")
+            self.showSpinner(showIndication: false)
         })
         
         // Save to the cache
         ImageCacheService.saveImageToFile(image: image, imageId: imageId)
+    }
+    
+    func showSpinner(showIndication: Bool) {
+        titleBirthday.isHidden = showIndication
+        titleFirstName.isHidden = showIndication
+        btnLogOut.isHidden = showIndication
+        titleLastName.isHidden = showIndication
+        profileImage.isHidden = showIndication
+        lblUsername.isHidden = showIndication
+        lblBirthdate.isHidden = showIndication
+        lblFirstName.isHidden = showIndication
+        lblLastName.isHidden = showIndication
+        loaderSpinner.isHidden = !showIndication
     }
 }

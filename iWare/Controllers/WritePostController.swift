@@ -42,7 +42,7 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func clearFields() {
-        imageView.image = #imageLiteral(resourceName: "Add_white")
+        imageView.image = #imageLiteral(resourceName: "uploadImage")
         inputText.text = ""
     }
     
@@ -91,7 +91,7 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     func checkValidation() -> Bool {
         var validateForm = true
         
-        if self.imageView.image == nil || inputText.text == "" {
+        if self.imageView.image == #imageLiteral(resourceName: "uploadImage") || inputText.text == "" {
             lblError.text = "Please put an image and a text before you post"
             validateForm = false
         } else {

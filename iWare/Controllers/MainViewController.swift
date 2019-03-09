@@ -18,15 +18,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [Post]()
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lblNoPosts: UILabel!
     
     var loaderSpinner: UIView = UIView()
+    
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Init Views
         self.initViews()
-        
+        self.tableView.addSubview(refreshControl)
+
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
         tableView.dataSource = self
@@ -55,6 +61,19 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    @objc func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+        print("refresh")
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
+    func setNoPostLabel() {
+        self.tableView.isHidden = self.posts.count == 0
+        lblNoPosts.isHidden = self.posts.count > 0
+    }
+    
     func loadPostsFromLocalStorage() {
         self.posts = SQLiteService.getAllPosts()
     }
@@ -76,6 +95,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Update the table
         self.tableView.reloadData()
+        
+        // Set no posts label
+        self.setNoPostLabel()
     }
 
     func initViews() {
@@ -85,11 +107,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Make the title circle
         mainTitle.makeCircular()
         
-        // Add Spinner
-//        Utils.addSpinnerToView(viewController: self)
-        
-        // Show loader
-//        showSpinner(showIndication: true)
+        // Set no posts label
+        self.setNoPostLabel()
     }
     
     func showSpinner(showIndication: Bool) {
@@ -130,6 +149,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func reloadPost(post: Post) {
         self.posts.append(post)
         self.tableView.reloadData()
+        
+        // Set no posts label
+        self.setNoPostLabel()
     }
     
     // number of rows in table view
@@ -143,7 +165,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("refresh colum number", indexPath.row)
+        // Set no posts label
+        self.setNoPostLabel()
+        
         let cell:PostCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! PostCell
         let post: Post = self.posts[indexPath.row]
         

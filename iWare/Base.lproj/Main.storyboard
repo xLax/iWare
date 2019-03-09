@@ -204,11 +204,15 @@
                     <navigationItem key="navigationItem" title="Profile" id="6lz-Ko-IPr"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnLogOut" destination="mRs-ch-xLE" id="3nf-9a-I1n"/>
                         <outlet property="lblBirthdate" destination="Fau-iW-58n" id="2Cl-Ja-zvK"/>
                         <outlet property="lblFirstName" destination="j06-Ae-VeQ" id="0yH-VP-ANe"/>
-                        <outlet property="lblLastName" destination="L94-v3-DOJ" id="grD-Dc-evY"/>
+                        <outlet property="lblLastName" destination="L94-v3-DOJ" id="2BH-x8-THX"/>
                         <outlet property="lblUsername" destination="V3m-DQ-476" id="wrc-Kd-txw"/>
                         <outlet property="profileImage" destination="ycr-oD-ymn" id="0R5-US-PTQ"/>
+                        <outlet property="titleBirthday" destination="CkP-iq-1rv" id="J9g-0A-Lb7"/>
+                        <outlet property="titleFirstName" destination="jOb-fM-HBi" id="bLq-F7-6ft"/>
+                        <outlet property="titleLastName" destination="pkN-J4-V9e" id="ZNg-FQ-UCA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmA-ZX-Apk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -235,12 +239,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-Wi-4TH">
-                                <rect key="frame" x="10" y="142" width="317" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Here" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="CrU-Wi-4TH">
+                                <rect key="frame" x="10" y="142" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <viewLayoutGuide key="safeArea" id="Npy-9s-uTu"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" textContentType="organization-title"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIg-pJ-oHH">
                                 <rect key="frame" x="8" y="438" width="351" height="110"/>
@@ -250,7 +255,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gL4-xk-5eL">
-                                <rect key="frame" x="10" y="389" width="343" height="41"/>
+                                <rect key="frame" x="10" y="417" width="343" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -266,17 +271,17 @@
                                     <action selector="uploadPost:" destination="G1X-ky-6oX" eventType="touchUpInside" id="ehK-2C-9dk"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uploadImage" translatesAutoresizingMaskIntoConstraints="NO" id="daG-xk-pCf">
-                                <rect key="frame" x="10" y="180" width="343" height="201"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYJ-ap-AM4">
-                                <rect key="frame" x="10" y="180" width="343" height="201"/>
+                                <rect key="frame" x="10" y="208" width="343" height="201"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="uploadPhoto:" destination="G1X-ky-6oX" eventType="touchUpInside" id="BRO-Kr-f4c"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uploadImage" translatesAutoresizingMaskIntoConstraints="NO" id="daG-xk-pCf">
+                                <rect key="frame" x="10" y="208" width="343" height="201"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rl0-s7-Eod"/>
@@ -304,6 +309,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="There is no posts yet..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSN-4s-cAy">
+                                <rect key="frame" x="68" y="252" width="250" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.30513488890000001" green="0.4421305552" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZuY-Ha-0Se">
                                 <rect key="frame" x="0.0" y="107" width="375" height="511"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -377,6 +389,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imgLogo" destination="aFW-e0-aqU" id="sxT-H5-YhA"/>
+                        <outlet property="lblNoPosts" destination="pSN-4s-cAy" id="E1f-bQ-JOx"/>
                         <outlet property="mainTitle" destination="f9X-hC-wF9" id="QTh-ow-yHh"/>
                         <outlet property="tableView" destination="ZuY-Ha-0Se" id="qY3-Kk-o7o"/>
                     </connections>
@@ -543,6 +556,6 @@
         <image name="x_icon" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xe4-cp-PYe"/>
+        <segue reference="rgP-BJ-B8q"/>
     </inferredMetricsTieBreakers>
 </document>
