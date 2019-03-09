@@ -24,9 +24,6 @@ class LoginController: UIViewController {
         // Init tables
         self.initTables()
         
-        txtUsername.text = "d"
-        txtPassword.text = "d"
-        
         // Init Views
         initViews()
     }
@@ -45,6 +42,8 @@ class LoginController: UIViewController {
         
         // Make him circular
         imgLogo.makeCircular()
+        
+        txtPassword.isSecureTextEntry = true
     }
     
     @IBAction func connect(_ sender: Any) {
