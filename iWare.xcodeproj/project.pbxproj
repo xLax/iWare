@@ -10,6 +10,8 @@
 		84200FB1221D9ECB0072F833 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB0221D9ECB0072F833 /* User.swift */; };
 		84200FB3221F263C0072F833 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84200FB2221F263C0072F833 /* Post.swift */; };
 		842E9DF1222C78CE00A7FB02 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */; };
+		845662662235807A00E948BD /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845662652235807A00E948BD /* ImageCacheService.swift */; };
+		845662682235809A00E948BD /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845662672235809A00E948BD /* SQLiteService.swift */; };
 		84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2A21F76A47004D0CF7 /* ProfileController.swift */; };
 		84587C2D21F76B70004D0CF7 /* WritePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2C21F76B70004D0CF7 /* WritePostController.swift */; };
 		84587C2F21F772A3004D0CF7 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2E21F772A3004D0CF7 /* RegisterController.swift */; };
@@ -17,8 +19,6 @@
 		8491D78F221C5B2C00189511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8491D78E221C5B2C00189511 /* GoogleService-Info.plist */; };
 		8491D790221C5B2C00189511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8491D78E221C5B2C00189511 /* GoogleService-Info.plist */; };
 		8491D791221C5B2C00189511 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8491D78E221C5B2C00189511 /* GoogleService-Info.plist */; };
-		849908B5222EDF1200E3FFF1 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908B3222EDF1200E3FFF1 /* ImageCacheService.swift */; };
-		849908B6222EDF1200E3FFF1 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908B4222EDF1200E3FFF1 /* SQLiteService.swift */; };
 		849908B8222EF93F00E3FFF1 /* RemoveElementArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849908B7222EF93F00E3FFF1 /* RemoveElementArray.swift */; };
 		849908BA222F070200E3FFF1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 849908B9222F070200E3FFF1 /* libsqlite3.0.tbd */; };
 		849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F4E4021EA540F000DDB71 /* AppDelegate.swift */; };
@@ -62,13 +62,13 @@
 		84200FB0221D9ECB0072F833 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84200FB2221F263C0072F833 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		842E9DF0222C78CE00A7FB02 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		845662652235807A00E948BD /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		845662672235809A00E948BD /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		84587C2A21F76A47004D0CF7 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		84587C2C21F76B70004D0CF7 /* WritePostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostController.swift; sourceTree = "<group>"; };
 		84587C2E21F772A3004D0CF7 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		84587C3021F77B14004D0CF7 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8491D78E221C5B2C00189511 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		849908B3222EDF1200E3FFF1 /* ImageCacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCacheService.swift; path = ../../../../Downloads/ImageCacheService.swift; sourceTree = "<group>"; };
-		849908B4222EDF1200E3FFF1 /* SQLiteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteService.swift; path = ../../../../Downloads/SQLiteService.swift; sourceTree = "<group>"; };
 		849908B7222EF93F00E3FFF1 /* RemoveElementArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveElementArray.swift; sourceTree = "<group>"; };
 		849908B9222F070200E3FFF1 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		849F4E3D21EA540F000DDB71 /* iWare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,10 +204,10 @@
 			isa = PBXGroup;
 			children = (
 				84EB0EF0222C305A0004635E /* LoginInfo.swift */,
-				849908B3222EDF1200E3FFF1 /* ImageCacheService.swift */,
-				849908B4222EDF1200E3FFF1 /* SQLiteService.swift */,
 				84EB0EF4222C30650004635E /* Utils.swift */,
 				84EB0EF1222C305A0004635E /* FirebaseService.swift */,
+				845662652235807A00E948BD /* ImageCacheService.swift */,
+				845662672235809A00E948BD /* SQLiteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -449,9 +449,9 @@
 				84EB0EF3222C305A0004635E /* FirebaseService.swift in Sources */,
 				84200FB1221D9ECB0072F833 /* User.swift in Sources */,
 				849F4E4121EA540F000DDB71 /* AppDelegate.swift in Sources */,
-				849908B5222EDF1200E3FFF1 /* ImageCacheService.swift in Sources */,
-				849908B6222EDF1200E3FFF1 /* SQLiteService.swift in Sources */,
 				842E9DF1222C78CE00A7FB02 /* CustomTabBarViewController.swift in Sources */,
+				845662682235809A00E948BD /* SQLiteService.swift in Sources */,
+				845662662235807A00E948BD /* ImageCacheService.swift in Sources */,
 				84200FB3221F263C0072F833 /* Post.swift in Sources */,
 				849908B8222EF93F00E3FFF1 /* RemoveElementArray.swift in Sources */,
 				84587C2B21F76A47004D0CF7 /* ProfileController.swift in Sources */,

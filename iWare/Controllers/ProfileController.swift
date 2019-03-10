@@ -50,7 +50,6 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
         if profileImageId != "" {
             ImageCacheService.getImageFromFile(imageId: profileImageId, callback:{ (image) in
                 if let imageFromCache = image {
-                    print("load image from cache", imageFromCache)
                     self.profileImage.image = imageFromCache
                 } else {
                     FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
@@ -58,14 +57,11 @@ class ProfileController: UIViewController, UIImagePickerControllerDelegate, UINa
                             return
                         } else {
                             self.profileImage.image = image
-                            print("save image to cache", image)
                             ImageCacheService.saveImageToFile(image: image!, imageId: profileImageId)
                         }
                     })
                 }
             })
-        } else {
-            return
         }
     }
     

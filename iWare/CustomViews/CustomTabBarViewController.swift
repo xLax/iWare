@@ -11,9 +11,10 @@ import UIKit
 class CustomTabBarViewController: UITabBarController {
 
     var tabBarIteam = UITabBarItem()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .normal)
         
@@ -43,10 +44,5 @@ class CustomTabBarViewController: UITabBarController {
         
         // initaial tab bar index
         self.selectedIndex = 1
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

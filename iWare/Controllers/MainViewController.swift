@@ -43,7 +43,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if snapshot.value as! Bool {
                 // Get all the posts from the internet
                 self.fetchPosts(callback: { (newPost: Post) in
-                    print(newPost.getDict())
                     self.reloadPost(post: newPost)
                     self.savePostLocally(post: newPost)
                 })
@@ -61,10 +60,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+        self.setNoPostLabel()
+    }
+    
     @objc func refresh(sender:AnyObject)
     {
         // Updating your data here...
-        print("refresh")
         self.tableView.reloadData()
         self.refreshControl.endRefreshing()
     }
@@ -178,12 +181,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblUserName.text = post.userName
         
         ImageCacheService.getImageFromFile(imageId: post.imageId!, callback: { (image) in
-            print("get image cache", indexPath.row)
             if let imageFromCache = image {
                 cell.postImage.image = image
             } else {
                 FirebaseService.shareInstance.getImage(imageId: post.imageId!, callback: { (image) in
-                    print("get firebase image", indexPath.row)
                     cell.postImage.image = image
                     ImageCacheService.saveImageToFile(image: image!, imageId: post.imageId!)
                 })
@@ -192,12 +193,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         FirebaseService.shareInstance.getUserByUserName(userName: post.userName!, callback: { (user) in
             ImageCacheService.getImageFromFile(imageId: user!.profileImageId, callback: { (image) in
-                print("get image cache for user", indexPath.row)
                 if let imageFromCache = image {
                     cell.imgProfile.image = image
                 } else {
                     FirebaseService.shareInstance.getImage(imageId: user!.profileImageId, callback: { (image) in
-                        print("get firebase image for user", indexPath.row)
                         
                         if image != nil {
                             cell.imgProfile.image = image

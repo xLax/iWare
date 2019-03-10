@@ -26,6 +26,9 @@ class LoginController: UIViewController {
         
         // Init Views
         initViews()
+        
+        txtUsername.text = "admin"
+        txtPassword.text = "admin"
     }
     
     func initTables() {

@@ -34,6 +34,10 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         initViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        initProfileImage()
+    }
+    
     func initViews() {
         self.initProfileImage()
         self.initLabels()
@@ -49,10 +53,8 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
     func initProfileImage() {
         let profileImageId = LoginInfo.shareInstance.profileImageId
         if profileImageId != "" {
-            print(profileImageId)
             ImageCacheService.getImageFromFile(imageId: profileImageId, callback:{ (image) in
                 if let imageFromCache = image {
-                    print("load image from cache", imageFromCache)
                     self.imgProfile.image = imageFromCache
                 } else {
                     FirebaseService.shareInstance.getImage(imageId: profileImageId, callback:{ (image) in
@@ -60,7 +62,6 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
                             return
                         } else {
                             self.imgProfile.image = image
-                            print("save image to cache", image)
                             ImageCacheService.saveImageToFile(image: image!, imageId: profileImageId)
                         }
                     })
@@ -108,10 +109,6 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         
         let text = inputText.text!
         
-        if !checkValidation(text: text) {
-            return print("You should write something before you share a post...")
-        }
-        
         let postId = Utils.getUniqeId()
         var imageId = Utils.getUniqeId()
         
@@ -146,9 +143,5 @@ class WritePostController: UIViewController, UIImagePickerControllerDelegate, UI
         lblError.isHidden = showIndication
         btnPost.isHidden = showIndication
         loaderSpinner.isHidden = !showIndication
-    }
-    
-    func checkValidation(text: String) -> Bool {
-        return !text.isEmpty
     }
 }
