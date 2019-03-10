@@ -150,7 +150,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func reloadPost(post: Post) {
-        self.posts.append(post)
+        self.posts.insert(post, at: 0)
         self.tableView.reloadData()
         
         // Set no posts label
